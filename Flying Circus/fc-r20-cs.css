@@ -1,13 +1,33 @@
-@import url('http://fonts.cdnfonts.com/css/koch-fette-deutsche-schrift');
+
+/*----------------- FONTS ------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Balthazar|UnifrakturMaguntia&display=swap');
+
+/*
+regular text
+font-family: 'Balthazar', serif;
+headings
+font-family: 'UnifrakturMaguntia', cursive;
+*/
+
+/*@import url('http://fonts.cdnfonts.com/css/koch-fette-deutsche-schrift');*/
 
 label {
-    font-family: 'Koch Fette Deutsche Schrift', sans-serif;
+    /*font-family: 'Koch Fette Deutsche Schrift', sans-serif;*/
+	font-family: 'Balthazar', serif;
 }
-/* Tabs */
+
+h1 {
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+
+/*----------------- Tabs - buttons and visibility ------------------*/
+
 .tab-container {
     border-bottom-style: double;
     border-width: 8px;
-    width: 442px;
+    width: 661px;
     margin:0px;
     padding: 0px;
     margin-bottom: -4px;
@@ -48,45 +68,38 @@ input[type="radio"].tab:checked + label{
     background-color: #888;
 }
 
-.tab-playbook {
+.tab-pilot,
+.tab-plane,
+.tab-npc,
+.tab-moves,
+.tab-confidants,
+.tab-roster {
     display: none;
     visibility: hidden;
 }
 
-.tab-playbook-radio:checked ~ .tab-playbook {
+.tab-pilot-radio:checked ~ .tab-pilot,
+.tab-plane-radio:checked ~ .tab-plane,
+.tab-npc-radio:checked ~ .tab-npc,
+.tab-moves-radio:checked ~ .tab-moves,
+.tab-confidants-radio:checked ~ .tab-confidants,
+.tab-roster-radio:checked ~ .tab-roster {
     display: block;
     visibility: visible;
 }
 
-.tab-plane {
-    display: none;
-    visibility: hidden;
+/*----------------- Advantage toggles, modifier, and game name ------------------*/
+
+
+/*----------------- GRIDS ------------------*/
+
+
+
+.sheet-main {
+  
 }
 
-.tab-plane-radio:checked ~ .tab-plane {
-    display: block;
-    visibility: visible;
-}
-
-.tab-npc {
-    display: none;
-    visibility: hidden;
-}
-
-.tab-npc-radio:checked ~ .tab-npc {
-    display: block;
-    visibility: visible;
-}
-
-.tab-settings {
-    display: none;
-    visibility: hidden;
-}
-
-.tab-settings-radio:checked ~ .tab-settings {
-    display: block;
-    visibility: visible;
-}
+/*----------------- Plane Tab Formatting ------------------*/
     
     .plane {
         width: 1080px;
