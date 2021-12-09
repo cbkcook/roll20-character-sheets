@@ -27,7 +27,7 @@ h1 {
 .tab-container {
     border-bottom-style: double;
     border-width: 8px;
-    width: 661px;
+    width: 551px;
     margin:0px;
     padding: 0px;
     margin-bottom: -4px;
@@ -71,7 +71,6 @@ input[type="radio"].tab:checked + label{
 .tab-pilot,
 .tab-plane,
 .tab-npc,
-.tab-moves,
 .tab-confidants,
 .tab-roster {
     display: none;
@@ -81,7 +80,6 @@ input[type="radio"].tab:checked + label{
 .tab-pilot-radio:checked ~ .tab-pilot,
 .tab-plane-radio:checked ~ .tab-plane,
 .tab-npc-radio:checked ~ .tab-npc,
-.tab-moves-radio:checked ~ .tab-moves,
 .tab-confidants-radio:checked ~ .tab-confidants,
 .tab-roster-radio:checked ~ .tab-roster {
     display: block;
