@@ -7,6 +7,7 @@
 
 <div class="sheet-main">
 	
+	<!-- Game Name, and roll toggles -->
 	<div class='sheet-topgrid'> 
 		<h1> Flying Circus </h1>
 		<span> </span>
@@ -42,6 +43,7 @@
     <div class='tab-container'> 
     </div>
 	
+	<!-- Tab Buttons -->
 	<input type="radio" name="attr_tabs" value="Pilot" class="tab tab-pilot-radio" checked /><label>Pilot</label>
 	<input type="radio" name="attr_tabs" value="Plane" class="tab tab-plane-radio" /><label>Plane</label>
 	<input type="radio" name="attr_tabs" value="Confidants" class="tab tab-confidants-radio" /><label>Confidants</label>
@@ -51,7 +53,32 @@
 	<!-- Spacing fix -->
 
 	<div class="col" style="width: 100%; height: 10px;"></div>
-	 
+	
+	<!-- Plane tab start-->	
+    <div class='tab-pilot'>
+		
+		<!-- Rows common to all playbooks -->	
+		<div class='sheet-nameline'>
+		
+			<label class="sheet-left-label">Name</label> <input name="attr_character_name" class="sheet-char-inputs" type="text"/>
+			
+			<label class="sheet-left-label">Playbook</label> <select name="attr_playbook"  class="sheet-select-inputs"> <option value="farmer" selected>Farmer</option> <option value="soldier" >Soldier</option> <option value="fisher" >Fisher</option> <option value="survivor" >Survivor</option> <option value="skyborn" >Skyborn</option> <option value="believer" >Believer</option> <option value="scion" >Scion</option> <option value="worker" >Worker</option> <option value="student" >Student</option> <option value="witch" >Witch</option> </select> 
+			<span> </span>
+			
+			<input name="attr_hard" class="sheet-stat-inputs hard" type="number" value="0" /> 
+			<input name="attr_keen" class="sheet-stat-inputs keen" type="number" value="0" /> 
+			<input name="attr_calm" class="sheet-stat-inputs calm" type="number" value="0" /> 
+			<input name="attr_daring" class="sheet-stat-inputs daring" type="number" value="0" /> 
+		
+		</div>
+		
+		
+		
+	
+	</div>
+	
+	
+	<!-- Plane tab start-->	
     <div class='tab-plane plane'>
         <img src="https://cdn.discordapp.com/attachments/445649252085923861/905941261243011102/fcd864.jpg" width="864px" height="864px" alt="Flying Circus Dashboard" >
         <div class='alt meter token'>
