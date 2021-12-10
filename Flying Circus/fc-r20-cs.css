@@ -22,7 +22,91 @@ h1 {
 }
 
 
-/*----------------- Tabs - buttons and visibility ------------------*/
+/*----------------- Tabs - buttons and visibility, Roll Toggles ------------------*/
+
+.sheet-topgrid {
+  grid-area: topgrid;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 200px 345px 50px 6px 50px 6px 50px 10px 70px 15px 60px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: 30px;
+  
+}
+
+label.sheet-big-label {
+	
+	font-family: 'Balthazar', serif;
+	text-align: center;
+	color: black;
+	display: inline;
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 30px;
+    margin-bottom: 0px;
+	
+}
+
+.sheet-topgrid input[type=number].sheet-stat-inputs{
+	
+	font-family: 'Balthazar', serif;
+	color: black;
+	display: inline;
+	height:30px;
+	width:40px;
+	text-align: center;
+	
+}
+
+
+button.sheet-radio-roll-state {
+	
+	font-family: 'Balthazar', serif;
+	font-size: 1.5em;
+	color: black;
+	border-style: solid;
+	/*border-radius: 8px;*/
+	text-align: center;
+	line-height: 30px;
+	
+	
+	
+}
+
+
+button.sheet-radio-roll-state-advantage {
+	
+	background-color: rgb(213, 235, 217);
+	
+}
+
+button.sheet-radio-roll-state-flat {
+	
+	background-color: rgb(235, 237, 235);
+	
+}
+
+button.sheet-radio-roll-state-disadvantage {
+	
+	background-color: rgb(230, 204, 208);
+	
+}
+
+input.sheet-radio-roll-state[value="advantage"] ~ button.sheet-radio-roll-state-advantage {
+    background-color: rgb(149, 232, 164);
+
+}
+
+input.sheet-radio-roll-state[value="flat"] ~ button.sheet-radio-roll-state-flat {
+    background-color: rgb(160, 163, 160);
+}
+
+input.sheet-radio-roll-state[value="disadvantage"] ~ button.sheet-radio-roll-state-disadvantage {
+    background-color: rgb(212, 97, 115);
+}
+
+
 
 .tab-container {
     border-bottom-style: double;

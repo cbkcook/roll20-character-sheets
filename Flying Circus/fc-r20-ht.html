@@ -7,19 +7,51 @@
 
 <div class="sheet-main">
 	
-	<h1> Flying Circus </h1>
+	<div class='sheet-topgrid'> 
+		<h1> Flying Circus </h1>
+		<span> </span>
+		
+		<input type="hidden" class="sheet-radio-roll-state" name="attr_rollstate" value="flat" />
+		
+		<button type="action" name="act_roll_state_disadvantage" class="sheet-radio-roll-state  sheet-radio-roll-state-disadvantage"> Dis
+		</button>
+		
+		<span> </span>
+		
+		<button type="action" name="act_roll_state_flat" class="sheet-radio-roll-state  sheet-radio-roll-state-flat"> -
+		</button>
+		
+		<span> </span>
+		
+		<button type="action" name="act_roll_state_advantage" class="sheet-radio-roll-state  sheet-radio-roll-state-advantage"> Adv
+		</button>
+		
+		<span> </span>
+		
+		<label class="sheet-big-label" > Roll Mod </label>
+		
+		<input name="attr_roll_mod" class="sheet-stat-inputs" type="number" value="0" /> 
+		
+	
+	</div>
+	
+	<!-- Spacing fix -->
+
+	<div class="col" style="width: 100%; height: 10px;"></div>
 	
     <div class='tab-container'> 
     </div>
-    <input type="radio" name="attr_tabs" value="Pilot" class="tab tab-pilot-radio" checked /><label>Pilot</label>
-    <input type="radio" name="attr_tabs" value="Plane" class="tab tab-plane-radio" /><label>Plane</label>
+	
+	<input type="radio" name="attr_tabs" value="Pilot" class="tab tab-pilot-radio" checked /><label>Pilot</label>
+	<input type="radio" name="attr_tabs" value="Plane" class="tab tab-plane-radio" /><label>Plane</label>
 	<input type="radio" name="attr_tabs" value="Confidants" class="tab tab-confidants-radio" /><label>Confidants</label>
 	<input type="radio" name="attr_tabs" value="Roster" class="tab tab-roster-radio" /><label>Roster</label>
-    <input type="radio" name="attr_tabs" value="NPC" class="tab tab-npc-radio" /><label>NPC</label>
-    
-	<h1> Grid test </h1>
-	
-	
+	<input type="radio" name="attr_tabs" value="NPC" class="tab tab-npc-radio" /><label>NPC</label>
+		
+	<!-- Spacing fix -->
+
+	<div class="col" style="width: 100%; height: 10px;"></div>
+	 
     <div class='tab-plane plane'>
         <img src="https://cdn.discordapp.com/attachments/445649252085923861/905941261243011102/fcd864.jpg" width="864px" height="864px" alt="Flying Circus Dashboard" >
         <div class='alt meter token'>
@@ -104,3 +136,14 @@
 </div>
 
 </html>
+
+<script type="text/worker">
+  const rollStateRadioValues = ["advantage","flat","disadvantage"];
+  rollStateRadioValues.forEach(function(value) {
+    on(`clicked:roll_state_${value}`, function() {
+      setAttrs({
+        ["rollstate"]: value
+      });
+    });
+  });
+</script>
