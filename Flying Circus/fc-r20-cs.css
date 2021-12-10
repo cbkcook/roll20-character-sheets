@@ -323,7 +323,7 @@ input[type="radio"].tab:checked + label{
   grid-area: nameline;
   align-self: self-start;
   font-family: 'Balthazar', serif;
-  grid-template-columns: 80px 150px 80px 100px 40px 50px 50px 50px 50px 120px;
+  grid-template-columns: 80px 170px 5px 80px 100px 40px 50px 50px 50px 50px 140px;
   display: grid;
   grid-gap: 4px;
   grid-template-rows: 30px;
@@ -351,14 +351,40 @@ select.sheet-select-inputs{
 	font-size: 1.5em;
 }
 
+
+select.sheet-select-inputs-long{
+	
+	font-family: 'Balthazar', serif;
+	display: inline;
+	height:30px;
+	width:140px;
+	font-size: 1.5em;
+}
+
 input.sheet-char-inputs{
 	
 	font-family: 'Balthazar', serif;
 	display: inline;
 	height:30px;
-	width:150px;
+	width:170px;
 	font-size: 1.5em;
 }
+
+.sheet-playbook-name:not([value='fisher']) ~ .sheet-statpackage .playbook-fisher,
+.sheet-playbook-name:not([value='witch']) ~ .sheet-statpackage .playbook-witch,
+.sheet-playbook-name:not([value='farmer']) ~ .sheet-statpackage .playbook-farmer,
+.sheet-playbook-name:not([value='soldier']) ~ .sheet-statpackage .playbook-soldier,
+.sheet-playbook-name:not([value='survivor']) ~ .sheet-statpackage .playbook-survivor,
+.sheet-playbook-name:not([value='skyborn']) ~ .sheet-statpackage .playbook-skyborn,
+.sheet-playbook-name:not([value='believer']) ~ .sheet-statpackage .playbook-believer,
+.sheet-playbook-name:not([value='scion']) ~ .sheet-statpackage .playbook-scion,
+.sheet-playbook-name:not([value='worker']) ~ .sheet-statpackage .playbook-worker,
+.sheet-playbook-name:not([value='student']) ~ .sheet-statpackage .playbook-student {
+  display: none;
+}
+
+
+
 
 
 
