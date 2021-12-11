@@ -71,6 +71,7 @@
 			<input name="attr_calm" class="sheet-stat-inputs calm" type="number" value="0" /> 
 			<span> &nbsp; <input name="attr_daring" class="sheet-stat-inputs daring" type="number" value="0" /> </span>
 			
+			<input type="hidden" name="attr_wild" value="0">
 			<input type="hidden" name="attr_playbook" class="sheet-playbook-name">
 			<select name="attr_statpackage"  class="sheet-select-inputs sheet-statpackage"> <option value="devotee" class="playbook-fisher" selected>Devotee (2,-2,2,0)</option> <option value="wanderer" class="playbook-fisher" selected>Wanderer (-2,-1,4,1)</option> <option value="cryptic" class="playbook-fisher" selected>Cryptic (-1,2,3,-2)</option> <option value="shark" class="playbook-fisher" selected>Shark (3,-2,3,-2)</option>  <option value="wideeyed" class="playbook-witch" >Wide-Eyed (-1,-2,1,4,2[wild])</option> <option value="scholar" class="playbook-witch" >Scholar (-1,2,4,-3,2[wild])</option> <option value="avenger" class="playbook-witch" >Avenger (3,2,-2,-1,2[wild])</option> <option value="recluse" class="playbook-witch" >Recluse (-2,3,3,-2,2[wild])</option> <option value="bushpilot" class="playbook-farmer" >Bush Pilot (-1,2,-3,4)</option> <option value="huntsman" class="playbook-farmer" >Huntsman (3,-1,-2,2)</option>    <option value="escapist" class="playbook-farmer" >Escapist (-4,3,0,3)</option>     <option value="bumpkin" class="playbook-farmer" >Bumpkin (0,-3,3,2)</option>       <option value="blueblood" class="playbook-soldier" >Blueblood (2,-2,2,0)</option>  <option value="blowhard" class="playbook-soldier" >Blowhard (-3,4,-4,-3)</option>   <option value="recruit" class="playbook-soldier" >Recruit (1,1,0,0)</option>        <option value="professional" class="playbook-soldier" >Professional (3,0,1,-2)</option> <option value="singleminded" class="playbook-believer" >Single-Minded (3,0,-4,3)</option> <option value="intellectual" class="playbook-believer" >Intellectual (-2,3,3,-2)</option>                                                                          <option value="enforcer" class="playbook-believer" >Enforcer (3,-2,2,-1)</option>  <option value="dreamer" class="playbook-believer" >Dreamer (-3,1,2,2)</option>     <option value="wingwalker" class="playbook-skyborn" >Wingwalker (-2,-2,2,4)</option> <option value="trickster" class="playbook-skyborn" >Trickster (-3,3,-1,3)</option> <option value="defender" class="playbook-skyborn" >Defender (2,0,-2,2)</option>    <option value="trader" class="playbook-skyborn" >Trader (-1,-2,3,2)</option>       <option value="researcher" class="playbook-student" >Researcher (0,2,0,-1)</option>  <option value="inventor" class="playbook-student" >Inventor (-1,-2,2,2)</option>   <option value="tourist" class="playbook-student" >Tourist (1,1,-2,1)</option>      <option value="studybuddy" class="playbook-student" >Study Buddy (0,2,2,-3)</option>   <option value="feral" class="playbook-survivor" >Feral (3,3,-2,-2)</option>        <option value="wideeyed2" class="playbook-survivor" >Wide-Eyed (-4,3,2,1)</option>       <option value="recluse2" class="playbook-survivor" >Recluse (-2,3,3,-2)</option>         <option value="resigned" class="playbook-survivor" >Resigned (0,2,-2,2)</option>   <option value="fahnenjunker" class="playbook-scion" >Fahnenjunker (3,1,-2,0)</option>   <option value="highborn" class="playbook-scion" >Highborn (0,1,2,-1)</option>      <option value="dilettante" class="playbook-scion" >Dilettante (-1,2,2,-1)</option>      <option value="charlatan" class="playbook-scion" >Charlatan (-2,4,-2,2)</option>   <option value="jobber" class="playbook-worker" >Jobber (1,1,1,-1)</option>         <option value="worndown" class="playbook-worker" >Worn Down (2,2,2,-4)</option>          <option value="newleaseonlife" class="playbook-worker" >New Lease on Life (2,-1,-1,2)</option>                                                                          <option value="safetyinspector" class="playbook-worker" >Safety Inspector (-2,2,4,-2)</option>   </select>
 			
@@ -86,7 +87,7 @@
 			<label class="sheet-left-label calm">Calm</label>
 			<label class="sheet-left-label daring">Daring</label>
 			
-			
+			<span> &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset Stats </button> </span>
 		
 		</div>
 		
@@ -197,4 +198,350 @@
       });
     });
   });
+  
+  //Reset Stats to starting stats for selected stat package (by playbook)
+	const attributes = ["statpackage","hard","keen","calm","daring","wild"];
+	on('clicked:resetstats', () => {
+		
+		getAttrs(attributes, function(values) {
+			const statpackage = values.statpackage.trim();
+			let hardnew = values.hard || 0;
+			let keennew = values.keen || 0;
+			let calmnew = values.calm || 0;
+			let daringnew = values.daring || 0;
+			let wildnew = values.wild || 0;
+			
+			if (statpackage === "devotee") {
+		
+				hardnew = 2;
+				keennew = -2;
+				calmnew = 2;
+				daringnew = 0;
+				wildnew = 0;
+			}
+			else if (statpackage === "wanderer") {
+		
+				hardnew = -2;
+				keennew = -1;
+				calmnew = 4;
+				daringnew = 1;
+				wildnew = 0;
+			}
+			else if (statpackage === "cryptic") {
+		
+				hardnew = -1;
+				keennew = 2;
+				calmnew = 3;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "shark") {
+		
+				hardnew = 3;
+				keennew = -2;
+				calmnew = 3;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "wideeyed") {
+		
+				hardnew = -1;
+				keennew = -2;
+				calmnew = 1;
+				daringnew = 4;
+				wildnew = 2;
+			}
+			else if (statpackage === "scholar") {
+		
+				hardnew = -1;
+				keennew = 2;
+				calmnew = 4;
+				daringnew = -3;
+				wildnew = 2;
+			}
+			else if (statpackage === "avenger") {
+		
+				hardnew = 3;
+				keennew = 2;
+				calmnew = -2;
+				daringnew = -1;
+				wildnew = 2;
+			}
+			else if (statpackage === "recluse") {
+		
+				hardnew = -2;
+				keennew = 3;
+				calmnew = 3;
+				daringnew = -2;
+				wildnew = 2;
+			}
+			else if (statpackage === "bushpilot") {
+		
+				hardnew = -1;
+				keennew = 2;
+				calmnew = -3;
+				daringnew = 4;
+				wildnew = 0;
+			}
+			else if (statpackage === "huntsman") {
+		
+				hardnew = 3;
+				keennew = -1;
+				calmnew = -2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "escapist") {
+		
+				hardnew = -4;
+				keennew = 3;
+				calmnew = 0;
+				daringnew = 3;
+				wildnew = 0;
+			}
+			else if (statpackage === "bumpkin") {
+		
+				hardnew = 0;
+				keennew = -3;
+				calmnew = 3;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "blueblood") {
+		
+				hardnew = 2;
+				keennew = -2;
+				calmnew = 2;
+				daringnew = 0;
+				wildnew = 0;
+			}
+			else if (statpackage === "blowhard") {
+		
+				hardnew = -3;
+				keennew = 4;
+				calmnew = 4;
+				daringnew = -3;
+				wildnew = 0;
+			}
+			else if (statpackage === "recruit") {
+		
+				hardnew = 1;
+				keennew = 1;
+				calmnew = 0;
+				daringnew = 0;
+				wildnew = 0;
+			}
+			else if (statpackage === "professional") {
+		
+				hardnew = 3;
+				keennew = 0;
+				calmnew = 1;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "singleminded") {
+		
+				hardnew = 3;
+				keennew = 0;
+				calmnew = -4;
+				daringnew = 3;
+				wildnew = 0;
+			}
+			else if (statpackage === "intellectual") {
+		
+				hardnew = -2;
+				keennew = 3;
+				calmnew = 3;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "enforcer") {
+		
+				hardnew = 3;
+				keennew = -2;
+				calmnew = 2;
+				daringnew = -1;
+				wildnew = 0;
+			}
+			else if (statpackage === "dreamer") {
+		
+				hardnew = -3;
+				keennew = 1;
+				calmnew = 2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "wingwalker") {
+		
+				hardnew = -2;
+				keennew = -2;
+				calmnew = 2;
+				daringnew = 4;
+				wildnew = 0;
+			}
+			else if (statpackage === "trickster") {
+		
+				hardnew = -3;
+				keennew = 3;
+				calmnew = -1;
+				daringnew = 3;
+				wildnew = 0;
+			}
+			else if (statpackage === "defender") {
+		
+				hardnew = 2;
+				keennew = 0;
+				calmnew = -2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "trader") {
+		
+				hardnew = -1;
+				keennew = -2;
+				calmnew = 3;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "researcher") {
+		
+				hardnew = 0;
+				keennew = 2;
+				calmnew = 0;
+				daringnew = -1;
+				wildnew = 0;
+			}
+			else if (statpackage === "inventor") {
+		
+				hardnew = -1;
+				keennew = -2;
+				calmnew = 2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "tourist") {
+		
+				hardnew = 1;
+				keennew = 1;
+				calmnew = -2;
+				daringnew = 1;
+				wildnew = 0;
+			}
+			else if (statpackage === "studybuddy") {
+		
+				hardnew = 0;
+				keennew = 2;
+				calmnew = 2;
+				daringnew = -3;
+				wildnew = 0;
+			}
+			else if (statpackage === "feral") {
+		
+				hardnew = 3;
+				keennew = 3;
+				calmnew = -2;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "wideeyed2") {
+		
+				hardnew = -4;
+				keennew = 3;
+				calmnew = 2;
+				daringnew = 1;
+				wildnew = 0;
+			}
+			else if (statpackage === "recluse2") {
+		
+				hardnew = -2;
+				keennew = 3;
+				calmnew = 3;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			else if (statpackage === "resigned") {
+		
+				hardnew = 0;
+				keennew = 2;
+				calmnew = -2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "fahnenjunker") {
+		
+				hardnew = 3;
+				keennew = 1;
+				calmnew = -2;
+				daringnew = 0;
+				wildnew = 0;
+			}
+			else if (statpackage === "highborn") {
+		
+				hardnew = 0;
+				keennew = 1;
+				calmnew = 2;
+				daringnew = -1;
+				wildnew = 0;
+			}
+			else if (statpackage === "dilettante") {
+		
+				hardnew = -1;
+				keennew = 2;
+				calmnew = 2;
+				daringnew = -1;
+				wildnew = 0;
+			}
+			else if (statpackage === "charlatan") {
+		
+				hardnew = -2;
+				keennew = 4;
+				calmnew = -2;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "jobber") {
+		
+				hardnew = 1;
+				keennew = 1;
+				calmnew = 1;
+				daringnew = 1;
+				wildnew = 0;
+			}
+			else if (statpackage === "worndown") {
+		
+				hardnew = 2;
+				keennew = 2;
+				calmnew = 2;
+				daringnew = -4;
+				wildnew = 0;
+			}
+			else if (statpackage === "newleaseonlife") {
+		
+				hardnew = 2;
+				keennew = -1;
+				calmnew = -1;
+				daringnew = 2;
+				wildnew = 0;
+			}
+			else if (statpackage === "safetyinspector") {
+		
+				hardnew = -2;
+				keennew = 2;
+				calmnew = 4;
+				daringnew = -2;
+				wildnew = 0;
+			}
+			
+			setAttrs({
+				hard: hardnew,
+				keen: keennew,
+				calm: calmnew,
+				daring: daringnew,
+				wild: wildnew
+			});
+		
+		});
+		
+		
+	});
 </script>

@@ -69,10 +69,9 @@ button.sheet-radio-roll-state {
 	border-style: solid;
 	/*border-radius: 8px;*/
 	text-align: center;
-	line-height: 30px;
-	
-	
-	
+	line-height: 25px;
+	height: 25px;
+
 }
 
 
@@ -374,6 +373,25 @@ input.calm{
 
 input.daring{
 	border-color: rgb(245, 239, 73);	
+}
+
+button.sheet-reset-stats {
+	
+	font-family: 'Balthazar', serif;
+	font-size: 1.5em;
+	color: black;
+	border-style: solid;
+	/*border-radius: 8px;*/
+	text-align: center;
+	line-height: 25px;
+	height: 25px;
+	width:100px;
+	background-color: rgb(187, 191, 187);
+
+}
+
+button.sheet-reset-stats:hover {
+	background-color: rgb(235, 237, 235);
 }
 
 
