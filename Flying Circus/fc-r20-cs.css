@@ -100,7 +100,8 @@ input.sheet-radio-roll-state[value="advantage"] ~ button.sheet-radio-roll-state-
 }
 
 input.sheet-radio-roll-state[value="flat"] ~ button.sheet-radio-roll-state-flat {
-    background-color: rgb(160, 163, 160);
+    /*background-color: rgb(160, 163, 160);*/
+	background-color: #888;
 }
 
 input.sheet-radio-roll-state[value="disadvantage"] ~ button.sheet-radio-roll-state-disadvantage {
@@ -273,12 +274,11 @@ input[type="radio"].tab:checked + label{
   display: block;
   width: 820px;
   height: auto;
-  grid-gap: 6px;
+  grid-gap: 4px;
   align-items: start;
   grid-template-columns: 406px 406x;
   grid-template-rows:  minmax(min-content, max-content)    ;
   grid-template-areas:"nameline   nameline"
-					  "ageline    ageline"
 					  "hometownline   hometownline"
 					  "talents   talents"
 					  "weapons   weapons"
@@ -323,10 +323,10 @@ input[type="radio"].tab:checked + label{
   grid-area: nameline;
   align-self: self-start;
   font-family: 'Balthazar', serif;
-  grid-template-columns: 80px 170px 5px 80px 100px 40px 50px 50px 50px 50px 140px;
+  grid-template-columns: 80px 150px 5px 80px 150px 6px 50px 50px 50px 52px 150px;
   display: grid;
   grid-gap: 4px;
-  grid-template-rows: 30px;
+  grid-template-rows: 30px 30px;
 
 }
 
@@ -347,17 +347,7 @@ select.sheet-select-inputs{
 	font-family: 'Balthazar', serif;
 	display: inline;
 	height:30px;
-	width:100px;
-	font-size: 1.5em;
-}
-
-
-select.sheet-select-inputs-long{
-	
-	font-family: 'Balthazar', serif;
-	display: inline;
-	height:30px;
-	width:140px;
+	width:150px;
 	font-size: 1.5em;
 }
 
@@ -366,9 +356,27 @@ input.sheet-char-inputs{
 	font-family: 'Balthazar', serif;
 	display: inline;
 	height:30px;
-	width:170px;
+	width:150px;
 	font-size: 1.5em;
 }
+
+input.hard{
+	border-color: rgb(235, 113, 11);	
+}
+
+input.keen{
+	border-color: rgb(121, 219, 107);	
+}
+
+input.calm{
+	border-color: rgb(133, 222, 219);	
+}
+
+input.daring{
+	border-color: rgb(245, 239, 73);	
+}
+
+
 
 .sheet-playbook-name:not([value='fisher']) ~ .sheet-statpackage .playbook-fisher,
 .sheet-playbook-name:not([value='witch']) ~ .sheet-statpackage .playbook-witch,
