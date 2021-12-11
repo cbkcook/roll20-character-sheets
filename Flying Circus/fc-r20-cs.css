@@ -182,61 +182,85 @@ input[type="radio"].tab:checked + label{
 
 /*----------------- Plane Tab Formatting ------------------*/
     
-    .plane {
-        width: 1080px;
-    }
-    
     /*A custom radio button*/
 	.checkmark {
 		position: absolute;
 		top: 0;
 		left: 0;
-		height: 40px;
-		width: 40px;
+		height: 30px;
+		width: 30px;
 		background-color: #00000000;
 		border-radius: 50%;
 	} 
+	.instrument-panel {
+	    position: absolute;
+	    top: 154px;
+	    width: 864px;
+	}
 	/*Creating circles for radio buttons*/
-    .alt label {
+    .alt label{
         position: absolute;
-        left: 154px; top: 307px;
+        left: 163px; top: 280px;
+    } 
+    .alt input[type=number].alt-number {
+        position: absolute;
+        left: 153px; top: 280px;
+        font-family: 'Balthazar', serif;
+	    color: black;
+	    display: inline;
+	    width:48px;
+	    text-align: center;
+	    font-size: 1.5em;
+        
     } 
 	.spd label {
         position: absolute;
-        left: 771px; top: 307px;
+        left: 737px; top: 280px;
     } 
-	.wear label {
+    .spd input[type=number].spd-number {
+        position: absolute;
+        left: 727px; top: 280px;
+        font-family: 'Balthazar', serif;
+	    color: black;
+	    display: inline;
+	    width:48px;
+	    text-align: center;
+	    font-size: 1.5em;
+        
+    } 
+	/*.wear label {
         position: absolute;
         left: 753px; top: 919px;
     }
 	.rpm label {
         position: absolute;
         left: 615px; top: 919px;
-    }
+    }*/
 	
 	/*Placing radio buttons in the circle*/
-    .deg18 { transform: rotate(18deg) translate(110px) rotate(-18deg); }
-    .deg54 { transform: rotate(54deg) translate(110px) rotate(-54deg); }
-    .deg90 { transform: rotate(90deg) translate(110px) rotate(-90deg); }
-    .deg126 { transform: rotate(126deg) translate(110px) rotate(-126deg); }
-    .deg162 { transform: rotate(162deg) translate(110px) rotate(-162deg); }
-    .deg198 { transform: rotate(198deg) translate(110px) rotate(-198deg); }
-    .deg234 { transform: rotate(234deg) translate(110px) rotate(-234deg); }
-    .deg270 { transform: rotate(270deg) translate(110px) rotate(-270deg); }
-    .deg306 { transform: rotate(306deg) translate(110px) rotate(-306deg); }
-    .deg342 { transform: rotate(342deg) translate(110px) rotate(-342deg); }
+    .deg18 { transform: rotate(18deg) translate(85px) rotate(-18deg); }
+    .deg54 { transform: rotate(54deg) translate(85px) rotate(-54deg); }
+    .deg90 { transform: rotate(90deg) translate(85px) rotate(-90deg); }
+    .deg126 { transform: rotate(126deg) translate(85px) rotate(-126deg); }
+    .deg162 { transform: rotate(162deg) translate(85px) rotate(-162deg); }
+    .deg198 { transform: rotate(198deg) translate(85px) rotate(-198deg); }
+    .deg234 { transform: rotate(234deg) translate(85px) rotate(-234deg); }
+    .deg270 { transform: rotate(270deg) translate(85px) rotate(-270deg); }
+    .deg306 { transform: rotate(306deg) translate(85px) rotate(-306deg); }
+    .deg342 { transform: rotate(342deg) translate(85px) rotate(-342deg); }
 
-    .deg18-inside { transform: rotate(18deg) translate(50px) rotate(-18deg); }
-    .deg54-inside { transform: rotate(54deg) translate(50px) rotate(-54deg); }
-    .deg90-inside { transform: rotate(90deg) translate(50px) rotate(-90deg); }
-    .deg126-inside { transform: rotate(126deg) translate(50px) rotate(-126deg); }
-    .deg162-inside { transform: rotate(162deg) translate(50px) rotate(-162deg); }
-    .deg198-inside { transform: rotate(198deg) translate(50px) rotate(-198deg); }
-    .deg234-inside { transform: rotate(234deg) translate(50px) rotate(-234deg); }
-    .deg270-inside { transform: rotate(270deg) translate(50px) rotate(-270deg); }
-    .deg306-inside { transform: rotate(306deg) translate(50px) rotate(-306deg); }
-    .deg342-inside { transform: rotate(342deg) translate(50px) rotate(-342deg); }    
-	
+    .deg18-inside { transform: rotate(18deg) translate(40px) rotate(-18deg); }
+    .deg54-inside { transform: rotate(54deg) translate(40px) rotate(-54deg); }
+    .deg90-inside { transform: rotate(90deg) translate(40px) rotate(-90deg); }
+    .deg126-inside { transform: rotate(126deg) translate(40px) rotate(-126deg); }
+    .deg162-inside { transform: rotate(162deg) translate(40px) rotate(-162deg); }
+    .deg198-inside { transform: rotate(198deg) translate(40px) rotate(-198deg); }
+    .deg234-inside { transform: rotate(234deg) translate(40px) rotate(-234deg); }
+    .deg270-inside { transform: rotate(270deg) translate(40px) rotate(-270deg); }
+    .deg306-inside { transform: rotate(306deg) translate(40px) rotate(-306deg); }
+    .deg342-inside { transform: rotate(342deg) translate(40px) rotate(-342deg); }    
+    
+	/* being replaced, but keeping around
     .deg0-e { transform: translate(50px); }
     .deg45-e { transform: rotate(45deg) translate(50px) rotate(-54deg); }
     .deg90-e { transform: rotate(90deg) translate(50px) rotate(-90deg); }
@@ -245,6 +269,7 @@ input[type="radio"].tab:checked + label{
     .deg225-e { transform: rotate(225deg) translate(50px) rotate(-225deg); }
     .deg270-e { transform: rotate(270deg) translate(50px) rotate(-270deg); }
     .deg315-e { transform: rotate(315deg) translate(50px) rotate(-315deg); }
+	*/
 	
 /* Hide the browser's default radio button*/
 .token > label input {
