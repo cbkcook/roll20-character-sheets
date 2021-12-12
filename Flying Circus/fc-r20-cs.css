@@ -325,7 +325,7 @@ input[type="radio"].tab:checked + label{
   grid-template-columns: 80px 150px 5px 80px 150px 6px 50px 50px 50px 52px 150px;
   display: grid;
   grid-gap: 4px;
-  grid-template-rows: 30px 30px;
+  grid-template-rows: 30px 30px auto;
 
 }
 
@@ -394,6 +394,35 @@ button.sheet-reset-stats:hover {
 	background-color: rgb(235, 237, 235);
 }
 
+button.sheet-hide-button {
+	
+	font-family: 'Balthazar', serif;
+	font-size: 1.5em;
+	color: black;
+	border-style: solid;
+	/*border-radius: 8px;*/
+	text-align: center;
+	line-height: 25px;
+	height: 25px;
+	width:15px;
+	background-color: rgb(187, 191, 187);
+
+}
+
+button.button-reveal{
+	
+	font-family: 'Balthazar', serif;
+	font-size: 1.5em;
+	color: black;
+	border-style: solid;
+	/*border-radius: 8px;*/
+	text-align: center;
+	line-height: 25px;
+	height: 35px;
+	width:15px;
+	background-color: rgb(187, 191, 187);
+
+}
 
 
 .sheet-playbook-name:not([value='fisher']) ~ .sheet-statpackage .playbook-fisher,
@@ -409,6 +438,10 @@ button.sheet-reset-stats:hover {
   display: none;
 }
 
+input.sheet-hide-stats-input[value="false"] ~ button.button-reveal,
+input.sheet-hide-stats-input[value="true"] ~ button.button-hide {
+    display: none;
+}
 
 
 

@@ -87,7 +87,11 @@
 			<label class="sheet-left-label calm">Calm</label>
 			<label class="sheet-left-label daring">Daring</label>
 			
-			<span> &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset Stats </button> </span>
+			<span> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset Stats </button> </span>
+			
+			<input type="hidden" name="attr_hideresetstats" class="sheet-hide-stats-input" value="false" >
+			<button type="action" name="act_hideresetstats_true" class="sheet-hide-stats-input sheet-hide-button button-hide" > </button>
+			<button type="action" name="act_hideresetstats_false" class="sheet-hide-stats-input sheet-hide-button button-reveal" > </button>
 		
 		</div>
 		
@@ -195,6 +199,15 @@
     on(`clicked:roll_state_${value}`, function() {
       setAttrs({
         ["rollstate"]: value
+      });
+    });
+  });
+  
+  const statHideValues = ["true","false"];
+  statHideValues.forEach(function(value) {
+    on(`clicked:hideresetstats_${value}`, function() {
+      setAttrs({
+        ["hideresetstats"]: value
       });
     });
   });
