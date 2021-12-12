@@ -325,7 +325,7 @@ input[type="radio"].tab:checked + label{
   grid-template-columns: 80px 150px 5px 80px 150px 6px 50px 50px 50px 52px 150px;
   display: grid;
   grid-gap: 4px;
-  grid-template-rows: 30px 30px auto;
+  grid-template-rows: 30px 30px;
 
 }
 
@@ -385,7 +385,7 @@ button.sheet-reset-stats {
 	text-align: center;
 	line-height: 25px;
 	height: 25px;
-	width:100px;
+	width:60px;
 	background-color: rgb(187, 191, 187);
 
 }
@@ -394,33 +394,25 @@ button.sheet-reset-stats:hover {
 	background-color: rgb(235, 237, 235);
 }
 
-button.sheet-hide-button {
+button.button-hide {
 	
-	font-family: 'Balthazar', serif;
-	font-size: 1.5em;
-	color: black;
+	width: 0;
+	height: 0;
 	border-style: solid;
-	/*border-radius: 8px;*/
-	text-align: center;
-	line-height: 25px;
-	height: 25px;
-	width:15px;
-	background-color: rgb(187, 191, 187);
+	border-width: 20px 10px 0 10px;
+	border-color: #ebedeb transparent transparent transparent;
+	background-color: white;
 
 }
 
 button.button-reveal{
 	
-	font-family: 'Balthazar', serif;
-	font-size: 1.5em;
-	color: black;
+	width: 0;
+	height: 0;
 	border-style: solid;
-	/*border-radius: 8px;*/
-	text-align: center;
-	line-height: 25px;
-	height: 35px;
-	width:15px;
-	background-color: rgb(187, 191, 187);
+	border-width: 10px 0 10px 20px;
+	border-color: transparent transparent transparent #888;
+	background-color: white;
 
 }
 
@@ -438,8 +430,9 @@ button.button-reveal{
   display: none;
 }
 
-input.sheet-hide-stats-input[value="false"] ~ button.button-reveal,
-input.sheet-hide-stats-input[value="true"] ~ button.button-hide {
+input.sheet-hide-stats-input[value="false"] ~ button.sheet-stat-reveal-button,
+input.sheet-hide-stats-input[value="true"] ~ button.sheet-stat-hide-button,
+input.sheet-hide-stats-input[value="true"] ~ button.sheet-reset-stats {
     display: none;
 }
 

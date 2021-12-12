@@ -87,11 +87,11 @@
 			<label class="sheet-left-label calm">Calm</label>
 			<label class="sheet-left-label daring">Daring</label>
 			
-			<span> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset Stats </button> </span>
+			<span> &nbsp; &nbsp; <input type="hidden" name="attr_hideresetstats" class="sheet-hide-stats-input" value="false" >
+			<button type="action" name="act_hideresetstats_true" class="sheet-hide-stats-input sheet-stat-hide-button button-hide" > </button>
+			<button type="action" name="act_hideresetstats_false" class="sheet-hide-stats-input sheet-stat-reveal-button button-reveal" > </button> &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset </button> </span>
 			
-			<input type="hidden" name="attr_hideresetstats" class="sheet-hide-stats-input" value="false" >
-			<button type="action" name="act_hideresetstats_true" class="sheet-hide-stats-input sheet-hide-button button-hide" > </button>
-			<button type="action" name="act_hideresetstats_false" class="sheet-hide-stats-input sheet-hide-button button-reveal" > </button>
+			
 		
 		</div>
 		
