@@ -344,11 +344,23 @@ input[type="radio"].tab:checked + label{
   grid-area: planeline;
   align-self: self-start;
   font-family: 'Balthazar', serif;
-  grid-template-columns: 85px 150px 5px 75px 150px 6px 44px 150px;
+  grid-template-columns: 85px 150px 5px 75px 150px 6px 44px 150px 46px 35px 30px;
   display: grid;
   grid-gap: 4px;
   grid-template-rows: 30px;
-  grid-template-areas:".   .   .    .   injuryboxes   .    .   viceboxes";
+  grid-template-areas:".   .   .    .   injuryboxes   .    .   viceboxes   .   .   .";
+
+}
+
+.sheet-stressline {
+  grid-area: stressline;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 85px 150px 5px 75px 300px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: 30px;
+  grid-template-areas:".   masteryboxes   .    .   stressboxes";
 
 }
 
@@ -367,8 +379,24 @@ input[type="radio"].tab:checked + label{
   grid-template-rows: 30px;
 }
 
+.masteryboxes {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 30px 30px 30px 30px 30px;
+  grid-template-rows: 30px;
+}
+
+.stressboxes {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
+  grid-template-rows: 30px;
+}
+
 .injuryboxes .radiobox,
-.viceboxes .radiobox  {
+.viceboxes .radiobox,
+.masteryboxes .radiobox,
+.stressboxes .radiobox  {
   order: 1;
   border: 1px solid black;
   border-radius: 50%;
@@ -382,20 +410,26 @@ input[type="radio"].tab:checked + label{
 }
 
 .injuryboxes .radiobox:checked,
-.viceboxes .radiobox:checked {
+.viceboxes .radiobox:checked,
+.masteryboxes .radiobox:checked,
+.stressboxes .radiobox:checked {
   opacity: 0;
   z-index: 0;
   position: absolute;
 }
 
 .injuryboxes .radiobox:checked ~ .radiobox,
-.viceboxes .radiobox:checked ~ .radiobox {
+.viceboxes .radiobox:checked ~ .radiobox,
+.masteryboxes .radiobox:checked ~ .radiobox,
+.stressboxes .radiobox:checked ~ .radiobox {
   order: 3;
   background-color: transparent;
 }
 
 .injuryboxes .radiobox.reset,
-.viceboxes .radiobox.reset {
+.viceboxes .radiobox.reset,
+.masteryboxes .radiobox.reset,
+.stressboxes .radiobox.reset {
   order: 2;
   background-color: #888;
 }
@@ -529,7 +563,16 @@ input.sheet-hide-stats-input[value="true"] ~ button.sheet-reset-stats {
     display: none;
 }
 
-
+.sheet-planeline input[type=number].sheet-stat-inputs{
+	
+	font-family: 'Balthazar', serif;
+	color: black;
+	display: inline;
+	height:30px;
+	width:50px;
+	text-align: center;
+	font-size: 1.5em;
+}
 
 
 
