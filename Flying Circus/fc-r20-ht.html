@@ -44,12 +44,13 @@
     </div>
 	
 	<!-- Tab Buttons -->
-	<input type="radio" name="attr_tabs" value="Pilot" class="tab tab-pilot-radio" checked /><label>Pilot</label>
-	<input type="radio" name="attr_tabs" value="Plane" class="tab tab-plane-radio" /><label>Plane</label>
-	<input type="radio" name="attr_tabs" value="Confidants" class="tab tab-confidants-radio" /><label>Confidants</label>
-	<input type="radio" name="attr_tabs" value="Roster" class="tab tab-roster-radio" /><label>Roster</label>
-	<input type="radio" name="attr_tabs" value="NPC" class="tab tab-npc-radio" /><label>NPC</label>
+	<input type="radio" name="attr_tabs" value="Pilot" class="tab tab-pilot-radio sheet-tab-buttons" checked /><label>Pilot</label>
+	<input type="radio" name="attr_tabs" value="Plane" class="tab tab-plane-radio sheet-tab-buttons" /><label>Plane</label>
+	<input type="radio" name="attr_tabs" value="Confidants" class="tab tab-confidants-radio sheet-tab-buttons" /><label>Confidants</label>
+	<input type="radio" name="attr_tabs" value="Roster" class="tab tab-roster-radio sheet-tab-buttons" /><label>Roster</label>
+	<input type="radio" name="attr_tabs" value="NPC" class="tab tab-npc-radio sheet-tab-buttons" /><label>NPC</label>
 		
+	
 	<!-- Spacing fix -->
 
 	<div class="col" style="width: 100%; height: 10px;"></div>
@@ -91,9 +92,48 @@
 			<button type="action" name="act_hideresetstats_true" class="sheet-hide-stats-input sheet-stat-hide-button button-hide" > </button>
 			<button type="action" name="act_hideresetstats_false" class="sheet-hide-stats-input sheet-stat-reveal-button button-reveal" > </button> &nbsp; &nbsp; &nbsp; &nbsp; <button type="action" name="act_resetstats" class="sheet-reset-stats" title="Select a starting stat package, click reset here, and then add +1 to any stat.">Reset </button> </span>
 			
-			
-		
 		</div>
+		
+		<!-- Spacing fix -->
+
+		<div class="col" style="width: 100%; height: 4px;"></div>
+		
+		<!-- Hometown line -->	
+		<div class='sheet-hometownline'>
+			
+			<label class="sheet-left-label">Hometown</label> <input name="attr_hometown" class="sheet-char-inputs" type="text"/>
+			<span> </span>
+			
+			<label class="sheet-left-label">People</label> <input name="attr_people" class="sheet-char-inputs" type="text"/>
+			<span> </span>
+			
+			<label class="sheet-left-label">Look</label> <input name="attr_look" class="sheet-char-inputs-long" type="text"/>
+			<span> </span>
+
+		</div>
+		
+		
+		<!-- Plane line -->	
+		<div class='sheet-planeline'>
+			
+			<label class="sheet-left-label">Plane</label> <input name="attr_plane" class="sheet-char-inputs" type="text"/>
+			<span> </span>
+			
+			<label class="sheet-left-label">Injury</label> 
+			
+			<div class="radiocontainer">
+			  <input checked="checked" class="radiobox reset" type="radio" name="attr_strength" value="0">
+			  <input class="radiobox" type="radio" name="attr_strength" value="1">
+			  <input class="radiobox" type="radio" name="attr_strength" value="2">
+			  <input class="radiobox" type="radio" name="attr_strength" value="3">
+			  <input class="radiobox" type="radio" name="attr_strength" value="4">
+			  <input class="radiobox" type="radio" name="attr_strength" value="5">
+			  <input class="radiobox" type="radio" name="attr_strength" value="6">
+			</div>
+			
+
+		</div>
+		
 		
 		
 		

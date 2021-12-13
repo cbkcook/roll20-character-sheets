@@ -118,7 +118,7 @@ input.sheet-radio-roll-state[value="disadvantage"] ~ button.sheet-radio-roll-sta
     margin-bottom: -4px;
     
 }
-input[type="radio"].tab {
+input[type="radio"].sheet-tab-buttons {
 	width: 108px;
 	height: 30px;
 	display: inline-block;
@@ -129,7 +129,7 @@ input[type="radio"].tab {
     margin: 0px;
     padding: 0px;
 }
-input[type="radio"].tab + label{
+input[type="radio"].sheet-tab-buttons + label{
 	width: 108px;
 	height: 30px;
 	display: inline-block;
@@ -149,7 +149,7 @@ input[type="radio"].tab + label{
     font-size: 22px;
 }
 
-input[type="radio"].tab:checked + label{
+input[type="radio"].sheet-tab-buttons:checked + label{
     background-color: #888;
 }
 
@@ -279,8 +279,8 @@ input[type="radio"].tab:checked + label{
   grid-template-rows:  minmax(min-content, max-content)    ;
   grid-template-areas:"nameline   nameline"
 					  "hometownline   hometownline"
-					  "talents   talents"
-					  "weapons   weapons"
+					  "planeline   planeline"
+					  "stressline   stressline"
 					  "armor    armor"
 					  "items    items"
 					  "contacts   contacts"
@@ -322,12 +322,75 @@ input[type="radio"].tab:checked + label{
   grid-area: nameline;
   align-self: self-start;
   font-family: 'Balthazar', serif;
-  grid-template-columns: 80px 150px 5px 80px 150px 6px 50px 50px 50px 52px 150px;
+  grid-template-columns: 85px 150px 5px 75px 150px 6px 50px 50px 50px 52px 150px;
   display: grid;
   grid-gap: 4px;
   grid-template-rows: 30px 30px;
 
 }
+
+.sheet-hometownline {
+  grid-area: hometownline;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 85px 150px 5px 75px 150px 6px 44px 320px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: 30px;
+
+}
+
+.sheet-planeline {
+  grid-area: planeline;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 85px 150px 5px 75px 250px 6px 44px 220px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: 30px;
+  grid-template-areas:".   .   .    .   radiocontainer   .    .   viceboxes";
+
+}
+
+
+.radiocontainer {
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px;
+  grid-template-rows: 30px;
+}
+
+.radiocontainer .radiobox {
+  order: 1;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: grey;
+  height: 25px !important;
+  width: 25px;
+  -webkit-appearance: none;
+  cursor: pointer;
+  z-index: 1;
+  margin-top: 2px;
+}
+
+.radiocontainer .radiobox:checked {
+  opacity: 0;
+  z-index: 0;
+  position: absolute;
+}
+
+.radiocontainer .radiobox:checked ~ .radiobox {
+  order: 3;
+  background-color: transparent;
+}
+
+.radiocontainer .radiobox.reset {
+  order: 2;
+  background-color: black;
+}
+
+
+
 
 label.sheet-left-label{
 	
@@ -356,6 +419,15 @@ input.sheet-char-inputs{
 	display: inline;
 	height:30px;
 	width:150px;
+	font-size: 1.5em;
+}
+
+input.sheet-char-inputs-long{
+	
+	font-family: 'Balthazar', serif;
+	display: inline;
+	height:30px;
+	width:320px;
 	font-size: 1.5em;
 }
 
