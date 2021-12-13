@@ -118,7 +118,7 @@ input.sheet-radio-roll-state[value="disadvantage"] ~ button.sheet-radio-roll-sta
     margin-bottom: -4px;
     
 }
-input[type="radio"].sheet-tab-buttons {
+input[type="radio"].tab {
 	width: 108px;
 	height: 30px;
 	display: inline-block;
@@ -129,7 +129,7 @@ input[type="radio"].sheet-tab-buttons {
     margin: 0px;
     padding: 0px;
 }
-input[type="radio"].sheet-tab-buttons + label{
+input[type="radio"].tab + label{
 	width: 108px;
 	height: 30px;
 	display: inline-block;
@@ -149,7 +149,7 @@ input[type="radio"].sheet-tab-buttons + label{
     font-size: 22px;
 }
 
-input[type="radio"].sheet-tab-buttons:checked + label{
+input[type="radio"].tab:checked + label{
     background-color: #888;
 }
 
@@ -344,27 +344,35 @@ input[type="radio"].sheet-tab-buttons:checked + label{
   grid-area: planeline;
   align-self: self-start;
   font-family: 'Balthazar', serif;
-  grid-template-columns: 85px 150px 5px 75px 250px 6px 44px 220px;
+  grid-template-columns: 85px 150px 5px 75px 150px 6px 44px 150px;
   display: grid;
   grid-gap: 4px;
   grid-template-rows: 30px;
-  grid-template-areas:".   .   .    .   radiocontainer   .    .   viceboxes";
+  grid-template-areas:".   .   .    .   injuryboxes   .    .   viceboxes";
 
 }
 
 
-.radiocontainer {
+.injuryboxes {
   display: grid;
-  grid-gap: 4px;
-  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px;
+  grid-gap: 0px;
+  grid-template-columns: 30px 30px 30px 30px 30px 30px;
   grid-template-rows: 30px;
 }
 
-.radiocontainer .radiobox {
+.viceboxes {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 30px 30px 30px 30px 30px;
+  grid-template-rows: 30px;
+}
+
+.injuryboxes .radiobox,
+.viceboxes .radiobox  {
   order: 1;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 50%;
-  background: grey;
+  background: #ebedeb;
   height: 25px !important;
   width: 25px;
   -webkit-appearance: none;
@@ -373,20 +381,23 @@ input[type="radio"].sheet-tab-buttons:checked + label{
   margin-top: 2px;
 }
 
-.radiocontainer .radiobox:checked {
+.injuryboxes .radiobox:checked,
+.viceboxes .radiobox:checked {
   opacity: 0;
   z-index: 0;
   position: absolute;
 }
 
-.radiocontainer .radiobox:checked ~ .radiobox {
+.injuryboxes .radiobox:checked ~ .radiobox,
+.viceboxes .radiobox:checked ~ .radiobox {
   order: 3;
   background-color: transparent;
 }
 
-.radiocontainer .radiobox.reset {
+.injuryboxes .radiobox.reset,
+.viceboxes .radiobox.reset {
   order: 2;
-  background-color: black;
+  background-color: #888;
 }
 
 
