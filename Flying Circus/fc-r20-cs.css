@@ -268,27 +268,42 @@ input[type="radio"].tab:checked + label{
 
 /*----------------- Pilot Tab Formatting ------------------*/
 
-/*----------------- 2 columned, 406px each ------------------*/
+/*----------------- 3 columned,  ------------------*/
 .tab-pilot {
   display: block;
   width: 820px;
   height: auto;
   grid-gap: 4px;
   align-items: start;
-  grid-template-columns: 406px 406x;
+  grid-template-columns: 248px 383px 368px;
   grid-template-rows:  minmax(min-content, max-content)    ;
-  grid-template-areas:"nameline   nameline"
-					  "hometownline   hometownline"
-					  "planeline   planeline"
-					  "stressline   stressline"
-					  "armor    armor"
-					  "items    items"
-					  "contacts   contacts"
-					  "bonecharms  bonecharms"
-					  "mana    mana"
-					  "powers    powers"
-					  "notes   notes";
+  grid-template-areas:"nameline   nameline  nameline"
+					  "hometownline   hometownline  hometownline"
+					  "planeline   planeline   planeline"
+					  "stressline   stressline   pilotmoves"
+					  "armor    armor   pilotmoves"
+					  "items    items   pilotmoves"
+					  "contacts   contacts   pilotmoves"
+					  "bonecharms  bonecharms   pilotmoves"
+					  "mana    mana   pilotmoves"
+					  "powers    powers   pilotmoves"
+					  "notes   notes   pilotmoves";
 }
+
+
+.sheet-pilotmoves {
+  grid-area: pilotmoves;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 213px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: repeat(auto-fill, 30px);
+  position: absolute;
+  left: 680px; top: 302px;
+
+}
+
 
 /* By default, hides all archetypes*/
 .sheet-farmer,
@@ -368,28 +383,28 @@ input[type="radio"].tab:checked + label{
 .injuryboxes {
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: 30px 30px 30px 30px 30px 30px;
+  grid-template-columns: 31px 31px 31px 31px 31px 31px;
   grid-template-rows: 30px;
 }
 
 .viceboxes {
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: 30px 30px 30px 30px 30px;
+  grid-template-columns: 31px 31px 31px 31px 31px;
   grid-template-rows: 30px;
 }
 
 .masteryboxes {
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: 30px 30px 30px 30px 30px;
+  grid-template-columns: 31px 31px 31px 31px 31px;
   grid-template-rows: 30px;
 }
 
 .stressboxes {
   display: grid;
   grid-gap: 0px;
-  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
+  grid-template-columns: 31px 31px 31px 31px 31px 31px 31px 31px 31px 31px;
   grid-template-rows: 30px;
 }
 
