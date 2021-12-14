@@ -362,7 +362,10 @@ input[type="radio"].tab:checked + label{
   grid-template-rows: repeat(auto-fill, 30px);
   position: absolute;
   left: 680px; top: 302px;
-
+  background-image: url("https://i.ibb.co/Pr2N93v/brushed-metal-1.jpg"); /*Metal background, free to use*/
+  /*background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Flying%20Circus/brushed-metal-1.jpg?raw=true");*/ /*Metal background, free to use*/
+  border-radius: 25px;
+  
 }
 
 
@@ -650,12 +653,214 @@ input.sheet-hide-stats-input[value="true"] ~ button.sheet-reset-stats {
 	font-size: 1.5em;
 }
 
+h2.sheet-middle-title{
+	
+	font-family: 'UnifrakturMaguntia', cursive;
+	color: black;
+	text-align: center;
+	display: inline;
+    /*font-size: 1.5em;*/
+    font-weight: normal;
+    line-height: 30px;
+    margin-bottom: 0px;
+
+	
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+/*----------------- Roll template formatting ------------------*/
+
+.sheet-movedesc {
+    background: #fff;
+    padding: 10px;
+}
+
+.sheet-rolltemplate-com table,
+.sheet-rolltemplate-com12 table,
+.sheet-rolltemplate-comtext table {
+    width: 98%;
+	border: 1px solid;
+	color: black;
+	font-size: 1em;
+	font-family: 'Balthazar', serif;
+}
+
+.sheet-rolltemplate-com th,
+.sheet-rolltemplate-com12 th,
+.sheet-rolltemplate-comtext th {
+	background-image: url("https://i.ibb.co/Pr2N93v/brushed-metal-1.jpg"); /*Metal background, free to use*/
+	/*background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Flying%20Circus/brushed-metal-1.jpg?raw=true");*/ /*Metal background, free to use*/
+	font-family: 'Balthazar', serif;
+	color: black;
+	padding: 5px 10px;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	line-height: 1.6em;
+	font-size: 1.2em;
+	text-align: left;
+}
+
+.sheet-rolltemplate-com .userscript-tcat,
+.sheet-rolltemplate-com12 .userscript-tcat,
+.sheet-rolltemplate-comtext .userscript-tcat {
+	font-weight: bold;
+}
+
+.sheet-rolltemplate-com td,
+.sheet-rolltemplate-com12 td,
+.sheet-rolltemplate-comtext td {
+	padding: 5px 10px;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+
+.sheet-rolltemplate-com tr:nth-child(odd),
+.sheet-rolltemplate-com12 tr:nth-child(odd),
+.sheet-rolltemplate-comtext tr:nth-child(odd) {
+	background-color: rgb(242, 242, 242);
+}
+
+.sheet-rolltemplate-com tr:nth-child(even),
+.sheet-rolltemplate-com12 tr:nth-child(even),
+.sheet-rolltemplate-comtext tr:nth-child(even) {
+	background-color: rgb(229, 229, 229);
+}
+
+.sheet-rolltemplate-com .inlinerollresult,
+.sheet-rolltemplate-com12 .inlinerollresult  {
+	display: inline-block;
+	min-width: 1.5em;
+	text-align: center;
+	border: 2px solid rgba(167, 168, 170,1); /*Cool Gray 6 C*/
+}
+
+.sheet-rolltemplate-com .inlinerollresult.fullcrit,
+.sheet-rolltemplate-com12 .inlinerollresult.fullcrit {
+	border: 2px solid #3FB315;
+}
+
+.sheet-rolltemplate-com .inlinerollresult.fullfail,
+.sheet-rolltemplate-com12 .inlinerollresult.fullfail {
+	border: 2px solid #B31515;
+}
+
+.sheet-rolltemplate-com .inlinerollresult.importantroll,
+.sheet-rolltemplate-com12 .inlinerollresult.importantroll {
+	border: 2px solid #4A57ED;
+}
+
+.textchatcontainer .message {
+    padding-left: 10px;
+}
+
+
+/*----------------- Roll button formatting ------------------*/
+
+.sheet-pilotmoves button[type=roll].sheet-rollbutton::before  {
+    content: "";
+
+}
+
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong::before  {
+    content: "";
+
+}
+
+.sheet-american-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-explorer-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-factotum-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-mother-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-orphan-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-undeniable-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-vessel-moves button[type=roll].sheet-rollbuttond6::before,
+.sheet-undeniable button[type=roll].sheet-rollbuttond6::before   {
+    font-family: "dicefontd6";
+    content: "F";
+    font-size: 1em;
+
+}
+
+.sheet-american-moves button[type=roll].sheet-rollbuttond6,
+.sheet-explorer-moves button[type=roll].sheet-rollbuttond6,
+.sheet-factotum-moves button[type=roll].sheet-rollbuttond6,
+.sheet-mother-moves button[type=roll].sheet-rollbuttond6,
+.sheet-orphan-moves button[type=roll].sheet-rollbuttond6,
+.sheet-undeniable-moves button[type=roll].sheet-rollbuttond6,
+.sheet-vessel-moves button[type=roll].sheet-rollbuttond6,
+.sheet-undeniable button[type=roll].sheet-rollbuttond6  {
+	background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/The%20Between/moroccan-background.PNG?raw=true"); /*Pattern generated with css, but due to security errors coming up, used as a picture here.*/
+	background-repeat: repeat;
+	background-size: 70px;
+	color: black;
+	width: 18px;
+	height: 18px;
+	border-style: none;
+	margin: auto;
+	border-radius: 5px;
+	white-space: normal;
+
+}
+
+.sheet-pilotmoves button[type=roll].sheet-rollbutton {
+	
+	font-family: 'Balthazar', serif;
+	background-color: white;
+	background-image: none;
+	color: black;
+	width: 160px;
+	height: 20px;
+	font-size: 1.5em;
+	border-style: none;
+	margin: auto;
+	border-radius: 0;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 0px;
+	padding-top: 0px;
+	white-space: normal;
+}
+
+.sheet-pilotmoves button[type=roll].daring {
+	background-color: rgb(245, 239, 73);
+}
+
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong {
+	
+	font-family: 'Balthazar', serif;
+	background-color: white;
+	background-image: none;
+	color: black;
+	width: 160px;
+	height: 40px;
+	font-size: 1.5em;
+	border-style: none;
+	margin: auto;
+	border-radius: 0;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 0px;
+	padding-top: 0px;
+	white-space: normal;
+	
+}
+
+.sheet-pilotmoves button[type=roll].sheet-rollbutton:hover,
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong:hover {
+	
+	background-color: rgb(235, 237, 235);
+	
+}
 
 
 

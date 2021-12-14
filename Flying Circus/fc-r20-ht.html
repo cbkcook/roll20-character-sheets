@@ -193,11 +193,33 @@
 
 		<div class="col" style="width: 635px; height: 4px;"></div>
 		
-		<!-- Pilot Moves Column -->	
+		<!-- Pilot Moves Column - different versions depending on advantage status -->	
 		<div class='sheet-pilotmoves'>
-		
-			<h3> Universal Moves </h3>
-			<h3> aaaaaaaaaaaaaaaaaaaaaa </h3>
+			
+			<h2 class="sheet-middle-title" > On Foot Moves </h2>
+			
+			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" > Explore the Wild </button>
+			
+			<h2 class="sheet-middle-title" > Stress Release </h2>
+			
+			
+			
+			<h2 class="sheet-middle-title" > Other Ground Moves </h2>
+			
+			
+			
+			<h2 class="sheet-middle-title" > Universal Moves </h2>
+			<button type="roll" name="roll_breaktrust" value='&{template:comtext} {{char=@{character_name}}} {{move=Break Trust}} {{movedescription=@{breaktrust}}}' class="sheet-rollbutton" title="When you lose trust in a comrade" > Break Trust</button>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<h2 class="sheet-middle-title" >  </h2>
 			
 		</div>
 		
@@ -321,9 +343,163 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Ground Move outcomes -->
+	
+	
+	<!-- Explore the Wild possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_explorethewildsuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a hit, overcome 1 Trek. 16+, choose 2:
+			<ul>
+				<li>Move safely and quietly.</li>
+				<li>If something happens, you have Advantage to Engage.</li>
+				<li>Overcome another Trek.</li>
+				<li>Leave a trail, giving Advantage to backtrack.</li>
+			</ul>
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_explorethewildpartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On a hit, overcome 1 Trek. On an 11-15, choose 1:
+			<ul>
+				<li>Move safely and quietly.</li>
+				<li>If something happens, you have Advantage to Engage.</li>
+				<li>Overcome another Trek.</li>
+				<li>Leave a trail, giving Advantage to backtrack.</li>
+			</ul>
+			</textarea>
+		</div>
+		<!-- Generic failure listed here -->
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_genericmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, the GM throws a twist.
+			</textarea>
+		</div>
+	</div>
+	
+	
+	
+
+	<!-- Universal Move outcomes -->
+	
+	<!-- Break Trust -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_breaktrust" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you lose trust in a comrade,</i> erase their mark and choose one:
+			<ul>
+				<li>Keep your feelings hidden, and <u>take 1 Stress.</u></li>
+				<li>Show directly and explicitly how you feel, and <u>remove 1 Stress.</u> </li>
+			</ul>
+			</textarea>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_takethawaydesc" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">Choose 3:
+			<ul>
+				<li>Clear any Conditions you wish, including Most-Beloved.</li>
+				<li>Your next roll is taken with Advantage. </li>
+				<li>You may take something !om your victim and add it to your Personal Quarters. </li>
+				<li>There are no long-term consequences for your actions. </li>
+			</ul>
+			</textarea>
+		</div>
+	</div>
+	
+	
 </div>
 
 </html>
+
+
+
+
+
+
+<!-- Roll template -->
+
+
+<rolltemplate class="sheet-rolltemplate-com">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}} </th></tr>
+        {{#statused}}
+			<tr><td><span>With </span> {{statused}}</td></tr>
+		{{/statused}}
+        <tr>
+            <td><span>Result: </span>{{check}}</td>
+        </tr>
+        <tr></tr>
+        {{#check}}
+            {{#rollTotal() showroll 1}}
+                <tr>
+                    <td>
+                        {{#rollGreater() check 15}}
+                            <span style="color: green;font-weight:bold;">Full Hit</span>
+                        {{/rollGreater() check 15}}
+                        {{#rollBetween() check 11 15}}
+                            <span style="color: black;font-weight:bold;">Partial Hit</span>
+                        {{/rollBetween() check 11 15}}
+                        {{#rollLess() check 11}}
+                            <span style="color: red;font-weight:bold;">Miss</span>
+                        {{/rollLess() check 11}}
+                    </td>
+                </tr>
+                {{#success}}
+                    {{#rollGreater() check 15}}
+                        <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
+                    {{/rollGreater() check 15}}
+                {{/success}}
+                {{#partial}}
+                    {{#rollBetween() check 11 15}}
+                        <tr><td colspan="2"><div class="movedesc">{{partial}}</div></td></tr>
+                    {{/rollBetween() check 11 15}}
+                {{/partial}}
+                {{#miss}}
+                    {{#rollLess() check 11}}
+                        <tr><td colspan="2"><div class="movedesc">{{miss}}</div></td></tr>
+                    {{/rollLess() check 11}}
+                {{/miss}}
+            {{/rollTotal() showroll 1}}
+        {{/check}}
+    </table>
+</rolltemplate>
+
+
+<!-- Roll template - version for when there is only text, no rolling -->
+
+
+<rolltemplate class="sheet-rolltemplate-comtext">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}}</th></tr>
+        {{#movedescription}}
+
+             <tr><td colspan="2"><div class="movedesc">{{movedescription}}</div></td></tr>
+             
+        {{/movedescription}}
+    </table>
+</rolltemplate>
+
+
+
+
+
 
 <script type="text/worker">
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
