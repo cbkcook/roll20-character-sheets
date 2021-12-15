@@ -688,7 +688,8 @@ h2.sheet-middle-title{
 
 .sheet-rolltemplate-com table,
 .sheet-rolltemplate-com12 table,
-.sheet-rolltemplate-comtext table {
+.sheet-rolltemplate-comtext table,
+.sheet-rolltemplate-comroll table {
     width: 98%;
 	border: 1px solid;
 	color: black;
@@ -698,7 +699,8 @@ h2.sheet-middle-title{
 
 .sheet-rolltemplate-com th,
 .sheet-rolltemplate-com12 th,
-.sheet-rolltemplate-comtext th {
+.sheet-rolltemplate-comtext th,
+.sheet-rolltemplate-comroll th {
 	background-image: url("https://i.ibb.co/Pr2N93v/brushed-metal-1.jpg"); /*Metal background, free to use*/
 	/*background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Flying%20Circus/brushed-metal-1.jpg?raw=true");*/ /*Metal background, free to use*/
 	font-family: 'Balthazar', serif;
@@ -713,13 +715,15 @@ h2.sheet-middle-title{
 
 .sheet-rolltemplate-com .userscript-tcat,
 .sheet-rolltemplate-com12 .userscript-tcat,
-.sheet-rolltemplate-comtext .userscript-tcat {
+.sheet-rolltemplate-comtext .userscript-tcat,
+.sheet-rolltemplate-comroll .userscript-tcat  {
 	font-weight: bold;
 }
 
 .sheet-rolltemplate-com td,
 .sheet-rolltemplate-com12 td,
-.sheet-rolltemplate-comtext td {
+.sheet-rolltemplate-comtext td,
+.sheet-rolltemplate-comroll td {
 	padding: 5px 10px;
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
@@ -727,18 +731,21 @@ h2.sheet-middle-title{
 
 .sheet-rolltemplate-com tr:nth-child(odd),
 .sheet-rolltemplate-com12 tr:nth-child(odd),
-.sheet-rolltemplate-comtext tr:nth-child(odd) {
+.sheet-rolltemplate-comtext tr:nth-child(odd),
+.sheet-rolltemplate-comroll tr:nth-child(odd) {
 	background-color: rgb(242, 242, 242);
 }
 
 .sheet-rolltemplate-com tr:nth-child(even),
 .sheet-rolltemplate-com12 tr:nth-child(even),
-.sheet-rolltemplate-comtext tr:nth-child(even) {
+.sheet-rolltemplate-comtext tr:nth-child(even),
+.sheet-rolltemplate-comroll tr:nth-child(even) {
 	background-color: rgb(229, 229, 229);
 }
 
 .sheet-rolltemplate-com .inlinerollresult,
-.sheet-rolltemplate-com12 .inlinerollresult  {
+.sheet-rolltemplate-com12 .inlinerollresult,
+.sheet-rolltemplate-comroll .inlinerollresult   {
 	display: inline-block;
 	min-width: 1.5em;
 	text-align: center;
@@ -746,17 +753,20 @@ h2.sheet-middle-title{
 }
 
 .sheet-rolltemplate-com .inlinerollresult.fullcrit,
-.sheet-rolltemplate-com12 .inlinerollresult.fullcrit {
+.sheet-rolltemplate-com12 .inlinerollresult.fullcrit,
+.sheet-rolltemplate-comroll .inlinerollresult.fullcrit  {
 	border: 2px solid #3FB315;
 }
 
 .sheet-rolltemplate-com .inlinerollresult.fullfail,
-.sheet-rolltemplate-com12 .inlinerollresult.fullfail {
+.sheet-rolltemplate-com12 .inlinerollresult.fullfail,
+.sheet-rolltemplate-comroll .inlinerollresult.fullfail  {
 	border: 2px solid #B31515;
 }
 
 .sheet-rolltemplate-com .inlinerollresult.importantroll,
-.sheet-rolltemplate-com12 .inlinerollresult.importantroll {
+.sheet-rolltemplate-com12 .inlinerollresult.importantroll,
+.sheet-rolltemplate-comroll .inlinerollresult.importantroll  {
 	border: 2px solid #4A57ED;
 }
 
@@ -861,6 +871,17 @@ h2.sheet-middle-title{
 	background-color: rgb(235, 237, 235);
 	
 }
+
+input.sheet-radio-roll-state[value="advantage"] ~ button.flat,
+input.sheet-radio-roll-state[value="advantage"] ~ button.disadvantage,
+input.sheet-radio-roll-state[value="flat"] ~ button.advantage,
+input.sheet-radio-roll-state[value="flat"] ~ button.disadvantage,
+input.sheet-radio-roll-state[value="disadvantage"] ~ button.flat,
+input.sheet-radio-roll-state[value="disadvantage"] ~ button.advantage   {
+    display: none;
+}
+
+
 
 
 
