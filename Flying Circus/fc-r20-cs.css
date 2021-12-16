@@ -777,12 +777,14 @@ h2.sheet-middle-title{
 
 /*----------------- Roll button formatting ------------------*/
 
-.sheet-pilotmoves button[type=roll].sheet-rollbutton::before  {
+.sheet-pilotmoves button[type=roll].sheet-rollbutton::before,
+.sheet-pilotmoves button[type=action].sheet-rollbutton::before  {
     content: "";
 
 }
 
-.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong::before  {
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong::before,
+.sheet-pilotmoves button[type=action].sheet-rollbuttonlong::before  {
     content: "";
 
 }
@@ -822,7 +824,8 @@ h2.sheet-middle-title{
 
 }
 
-.sheet-pilotmoves button[type=roll].sheet-rollbutton {
+.sheet-pilotmoves button[type=roll].sheet-rollbutton,
+.sheet-pilotmoves button[type=action].sheet-rollbutton {
 	
 	font-family: 'Balthazar', serif;
 	background-color: white;
@@ -830,22 +833,41 @@ h2.sheet-middle-title{
 	color: black;
 	width: 160px;
 	height: 20px;
-	font-size: 1.5em;
+	font-size: 20px;
 	border-style: none;
 	margin: auto;
 	border-radius: 0;
 	text-align: center;
-	line-height: 20px;
-	margin-top: 0px;
-	padding-top: 0px;
+	
+	/*line-height: 20px;*/
+	padding-top: 2px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
 	white-space: normal;
+	vertical-align: middle;
+    border-width: 0px;
+	/*display: inline-block;*/
+	border: 0px;
+	text-shadow: none;
+
 }
 
-.sheet-pilotmoves button[type=roll].daring {
+
+.sheet-pilotmoves button[type=action].sheet-rollbutton {
+	
+	padding-top: 4px;
+	padding-bottom: 2px;
+
+}
+
+.sheet-pilotmoves button[type=roll].daring,
+.sheet-pilotmoves button[type=action].daring {
 	background-color: rgb(245, 239, 73);
 }
 
-.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong {
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong,
+.sheet-pilotmoves button[type=action].sheet-rollbuttonlong {
 	
 	font-family: 'Balthazar', serif;
 	background-color: white;
@@ -853,20 +875,37 @@ h2.sheet-middle-title{
 	color: black;
 	width: 160px;
 	height: 40px;
-	font-size: 1.5em;
+	font-size: 20px;
 	border-style: none;
 	margin: auto;
 	border-radius: 0;
 	text-align: center;
-	line-height: 40px;
-	margin-top: 0px;
-	padding-top: 0px;
+	
+	/*line-height: 40px;*/
+	padding-top: 2px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
 	white-space: normal;
+	vertical-align: middle;
+    border-width: 0px;
+	/*display: inline-block;*/
+	border: 0px;
+	text-shadow: none;
 	
 }
 
+.sheet-pilotmoves button[type=action].sheet-rollbuttonlong {
+	
+	padding-top: 4px;
+	padding-bottom: 2px;
+
+}
+
 .sheet-pilotmoves button[type=roll].sheet-rollbutton:hover,
-.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong:hover {
+.sheet-pilotmoves button[type=roll].sheet-rollbuttonlong:hover,
+.sheet-pilotmoves button[type=action].sheet-rollbutton:hover,
+.sheet-pilotmoves button[type=action].sheet-rollbuttonlong:hover {
 	
 	background-color: rgb(235, 237, 235);
 	

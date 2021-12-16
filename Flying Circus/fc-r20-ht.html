@@ -201,10 +201,9 @@
 			
 			<h2 class="sheet-middle-title" > On Foot Moves </h2>
 			
-			<button type='action' name='act_roll'>Roll</button>
+			<button type='action' name='act_advexplorethewild' class="sheet-rollbutton daring advantage" title="When you lead the group forward into the wild">Explore the Wild</button>
 			
-			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}}  {{statused=Daring}} {{check=[[(2d10,[[1d10]])k2 + @{daring}}]]}} {{advroll=[[0]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring advantage" title="When you lead the group forward into the wild" > Explore the Wild </button>
-			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you lead the group forward into the wild" > Explore the Wild </button>
+			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you lead the group forward into the wild" > Explore the Wild </button>
 			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring disadvantage" title="When you lead the group forward into the wild"  > Explore the Wild </button>
 			
 			<h2 class="sheet-middle-title" > Stress Release </h2>
@@ -502,31 +501,31 @@
             {{#rollTotal() showroll 1}}
                 <tr>
                     <td>
-                        {{#rollGreater() check 15}}
+                        {{#rollGreater() computed::check 15}}
                             <span style="color: green;font-weight:bold;">Full Hit</span>
-                        {{/rollGreater() check 15}}
-                        {{#rollBetween() check 11 15}}
+                        {{/rollGreater() computed::check 15}}
+                        {{#rollBetween() computed::check 11 15}}
                             <span style="color: black;font-weight:bold;">Partial Hit</span>
-                        {{/rollBetween() check 11 15}}
-                        {{#rollLess() check 11}}
+                        {{/rollBetween() computed::check 11 15}}
+                        {{#rollLess() computed::check 11}}
                             <span style="color: red;font-weight:bold;">Miss</span>
-                        {{/rollLess() check 11}}
+                        {{/rollLess() computed::check 11}}
                     </td>
                 </tr>
                 {{#success}}
-                    {{#rollGreater() check 15}}
+                    {{#rollGreater() computed::check 15}}
                         <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
-                    {{/rollGreater() check 15}}
+                    {{/rollGreater() computed::check 15}}
                 {{/success}}
                 {{#partial}}
-                    {{#rollBetween() check 11 15}}
+                    {{#rollBetween() computed::check 11 15}}
                         <tr><td colspan="2"><div class="movedesc">{{partial}}</div></td></tr>
-                    {{/rollBetween() check 11 15}}
+                    {{/rollBetween() computed::check 11 15}}
                 {{/partial}}
                 {{#miss}}
-                    {{#rollLess() check 11}}
+                    {{#rollLess() computed::check 11}}
                         <tr><td colspan="2"><div class="movedesc">{{miss}}</div></td></tr>
-                    {{/rollLess() check 11}}
+                    {{/rollLess() computed::check 11}}
                 {{/miss}}
             {{/rollTotal() showroll 1}}
         {{/check}}
@@ -555,8 +554,15 @@
 <script type="text/worker">
   
   const initiateRoll = async function(event){
-  const roll = await startRoll('&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}}');
-  const computeObj = {};
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
+    let roll = await startRoll(message);
+    const computeObj = {};
+	
+  //const roll = await startRoll('&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}}');
+  //const computeObj = {};
+  
   let rollResults = [1,2,3].map((num)=>roll.results[`roll${num}`]);
   console.log(rollResults);
   let result = rollResults.map(a => a.result);
@@ -570,10 +576,25 @@
   console.log(max2);
   computeObj.check = max1 + max2;
   
-  computeObj.advroll = _.last(result);//I used the underscore function here as a shortcut. I'd probably recommend writing your own for your actual function
+  computeObj.advroll = _.last(result);//Get the last die - the advantage die's result
   finishRoll(roll.rollId,computeObj);
 };
-on('clicked:roll',initiateRoll);
+
+const parseClickTrigger = function(string){
+  let match = string.match(/clicked:(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);
+  match.shift();
+  return match;
+};
+const rollContent = {
+    advexplorethewild:'{{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}}',
+    acrobatics:`{{success=@{acrobaticssuccess}}} {{partial=@{acrobaticspartial}}}`
+};
+
+const rollButtonsAdv = ["advexplorethewild"];
+rollButtonsAdv.forEach((button)=>{
+    on(`clicked:${button}`,initiateRoll);
+});
+
   
   
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
