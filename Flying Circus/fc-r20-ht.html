@@ -205,6 +205,15 @@
 			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you lead the group forward into the wild" > Explore the Wild </button>
 			<button type='action' name='act_disexplorethewild' class="sheet-rollbutton daring disadvantage" title="When you lead the group forward into the wild">Explore the Wild</button>
 
+			<button type='action' name='act_advconfrontyourfears' class="sheet-rollbutton advantage" title="When you stand against that which stalks you, state what you fear it is">Confront Your Fears</button>
+			<button type="roll" name="roll_confrontyourfears" value='&{template:com} {{char=@{character_name}}} {{move=Confront Your Fears}} {{showroll=[[1]]}} {{check=[[2d10  + @{roll_mod} - @{injury}}]]}} {{success=@{confrontyourfearssuccess}}} {{partial=@{confrontyourfearspartial}}} {{miss=@{confrontyourfearsmiss}}}' class="sheet-rollbutton flat" title="When you stand against that which stalks you, state what you fear it is" > Confront Your Fears </button>
+			<button type='action' name='act_disconfrontyourfears' class="sheet-rollbutton disadvantage" title="When you stand against that which stalks you, state what you fear it is">Confront Your Fears</button>
+			
+			<button type='action' name='act_adv20parlaywiththestrange' class="sheet-rollbutton advantage" title="When you try to strike a deal with supernatural forces, state what you want and name two things you’d be willing to do or lose in exchange. If the offers are worthy, roll">Parlay with the Strange</button>
+			<button type="roll" name="roll_parlaywiththestrange" value='&{template:com20} {{char=@{character_name}}} {{move=Parlay with the Strange}} {{showroll=[[1]]}} {{check=[[2d10  + @{roll_mod} - @{injury}}]]}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}' class="sheet-rollbutton flat" title="When you try to strike a deal with supernatural forces, state what you want and name two things you’d be willing to do or lose in exchange. If the offers are worthy, roll" > Parlay with the Strange </button>
+			<button type='action' name='act_dis20parlaywiththestrange' class="sheet-rollbutton disadvantage" title="When you try to strike a deal with supernatural forces, state what you want and name two things you’d be willing to do or lose in exchange. If the offers are worthy, roll">Parlay with the Strange</button>
+			
+			
 			
 			
 			
@@ -218,7 +227,10 @@
 			
 			
 			<h2 class="sheet-middle-title" > Universal Moves </h2>
+			
 			<button type="roll" name="roll_breaktrust" value='&{template:comtext} {{char=@{character_name}}} {{move=Break Trust}} {{movedescription=@{breaktrust}}}' class="sheet-rollbutton" title="When you lose trust in a comrade" > Break Trust</button>
+			
+			<button type="roll" name="roll_restoretrust" value='&{template:comtext} {{char=@{character_name}}} {{move=Restore Trust}} {{movedescription=@{restoretrust}}}' class="sheet-rollbutton" title="When you show faith in a comrade" > Restore Trust</button>
 			
 			
 			
@@ -396,6 +408,61 @@
 		</div>
 	</div>
 	
+	<!-- Confront Your Fears possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_confrontyourfearssuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, the GM reveals how it is more innocuous than you suspected.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_confrontyourfearspartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, the GM reveals how it is stranger than you suspected.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_confrontyourfearsmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, the GM reveals how it was far worse than you feared.
+			</textarea>
+		</div>
+	</div>
+	
+	<!-- Parlay with the Strange possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 20+ : </span>
+			<textarea name="attr_parlaywiththestrangebest" class="sheet-actiondesc" placeholder="Best Success" title="Best Success">On a 20+, you get what you want and keep everything.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16-19 : </span>
+			<textarea name="attr_parlaywiththestrangesuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, they take one of your offers and give you what you want, no strings attached.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_parlaywiththestrangepartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, they take one, and the GM chooses 1:<!--
+			--><ul><!--
+				--><li>They take the other offer too.</li><!--
+				--><li>They’ll collect a favour from you in the nebulous future. </li><!--
+				--><li>They demand something else. Something more. </li><!--
+				--><li>What they give you isn’t quite what you asked for. </li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_parlaywiththestrangemiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, the GM chooses as many as they want, and maybe the player gets something:<!--
+			--><ul><!--
+				--><li>They take the other offer too.</li><!--
+				--><li>They’ll collect a favour from you in the nebulous future. </li><!--
+				--><li>They demand something else. Something more. </li><!--
+				--><li>What they give you isn’t quite what you asked for. </li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
+	
 	
 	
 
@@ -413,7 +480,16 @@
 			--></textarea>
 		</div>
 	</div>
-
+	
+	<!-- Restore Trust -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_restoretrust" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you show faith in a comrade,</i> mark Trust and take 1 Stress. 
+			</textarea>
+		</div>
+	</div>
+	
 	
 	
 	
@@ -460,6 +536,62 @@
                     {{#rollGreater() check 15}}
                         <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
                     {{/rollGreater() check 15}}
+                {{/success}}
+                {{#partial}}
+                    {{#rollBetween() check 11 15}}
+                        <tr><td colspan="2"><div class="movedesc">{{partial}}</div></td></tr>
+                    {{/rollBetween() check 11 15}}
+                {{/partial}}
+                {{#miss}}
+                    {{#rollLess() check 11}}
+                        <tr><td colspan="2"><div class="movedesc">{{miss}}</div></td></tr>
+                    {{/rollLess() check 11}}
+                {{/miss}}
+            {{/rollTotal() showroll 1}}
+        {{/check}}
+    </table>
+</rolltemplate>
+
+<!-- Roll template - 20+ -->
+
+
+<rolltemplate class="sheet-rolltemplate-com20">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}} </th></tr>
+        {{#statused}}
+			<tr><td><span>With </span> {{statused}}</td></tr>
+		{{/statused}}
+        <tr>
+            <td><span>Result: </span>{{check}} </td>
+        </tr>
+        <tr></tr>
+        {{#check}}
+            {{#rollTotal() showroll 1}}
+                <tr>
+                    <td>
+                        {{#rollGreater() check 19}}
+                            <span style="color: green;font-weight:bold;">Best Hit</span>
+                        {{/rollGreater() check 19}}
+						{{#rollBetween() check 16 19}}
+                            <span style="color: black;font-weight:bold;">Full Hit</span>
+                        {{/rollBetween() check 16 19}}
+                        {{#rollBetween() check 11 15}}
+                            <span style="color: black;font-weight:bold;">Partial Hit</span>
+                        {{/rollBetween() check 11 15}}
+                        {{#rollLess() check 11}}
+                            <span style="color: red;font-weight:bold;">Miss</span>
+                        {{/rollLess() check 11}}
+                    </td>
+                </tr>
+				{{#best}}
+                    {{#rollGreater() check 19}}
+                        <tr><td colspan="2"><div class="movedesc">{{best}}</div></td></tr>
+                    {{/rollGreater() check 19}}
+                {{/best}}
+                {{#success}}
+                    {{#rollBetween() check 16 19}}
+                        <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
+                    {{/rollBetween() check 16 19}}
                 {{/success}}
                 {{#partial}}
                     {{#rollBetween() check 11 15}}
@@ -527,6 +659,80 @@
                     {{#rollGreater() computed::check 15}}
                         <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
                     {{/rollGreater() computed::check 15}}
+                {{/success}}
+                {{#partial}}
+                    {{#rollBetween() computed::check 11 15}}
+                        <tr><td colspan="2"><div class="movedesc">{{partial}}</div></td></tr>
+                    {{/rollBetween() computed::check 11 15}}
+                {{/partial}}
+                {{#miss}}
+                    {{#rollLess() computed::check 11}}
+                        <tr><td colspan="2"><div class="movedesc">{{miss}}</div></td></tr>
+                    {{/rollLess() computed::check 11}}
+                {{/miss}}
+            {{/rollTotal() showroll 1}}
+        {{/check}}
+    </table>
+</rolltemplate>
+
+<!-- Roll template - custom roll parsing - 20+ -->
+
+
+<rolltemplate class="sheet-rolltemplate-comroll20">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}} </th></tr>
+        {{#statused}}
+			<tr><td><span>With </span> {{statused}}</td></tr>
+		{{/statused}}
+        <tr>
+            <td><span>Result: </span>{{computed::check}} </td>
+        </tr>
+		{{#advroll}}
+		<tr>
+            <td><span>Advantage Die: </span>{{computed::advroll}}
+			{{#rollLess() computed::advroll 2}}
+                <span style="color: red;font-weight:bold;"> &nbsp; &nbsp; Fault</span>
+            {{/rollLess() computed::advroll 2}}
+			</td>
+        </tr>
+		{{/advroll}}
+		{{#disroll}}
+		<tr>
+            <td><span>Disadvantage Die: </span>{{computed::disroll}}
+			{{#rollGreater() computed::disroll 9}}
+                <span style="color: red;font-weight:bold;"> &nbsp; &nbsp; Fault</span>
+            {{/rollGreater() computed::disroll 9}}
+			</td>
+        </tr>
+		{{/disroll}}
+        <tr></tr>
+        {{#check}}
+            {{#rollTotal() showroll 1}}
+                <tr>
+                    <td>
+                        {{#rollGreater() computed::check 19}}
+                            <span style="color: green;font-weight:bold;">Best Hit</span>
+                        {{/rollGreater() computed::check 19}}
+						{{#rollBetween() computed::check 16 19}}
+                            <span style="color: black;font-weight:bold;">Full Hit</span>
+                        {{/rollBetween() computed::check 16 19}}
+                        {{#rollBetween() computed::check 11 15}}
+                            <span style="color: black;font-weight:bold;">Partial Hit</span>
+                        {{/rollBetween() computed::check 11 15}}
+                        {{#rollLess() computed::check 11}}
+                            <span style="color: red;font-weight:bold;">Miss</span>
+                        {{/rollLess() computed::check 11}}
+                    </td>
+                </tr>
+                {{#best}}
+                    {{#rollGreater() computed::check 19}}
+                        <tr><td colspan="2"><div class="movedesc">{{best}}</div></td></tr>
+                    {{/rollGreater() computed::check 19}}
+                {{/best}}
+                {{#success}}
+                    {{#rollBetween() computed::check 16 19}}
+                        <tr><td colspan="2"><div class="movedesc">{{success}}</div></td></tr>
+                    {{/rollBetween() computed::check 16 19}}
                 {{/success}}
                 {{#partial}}
                     {{#rollBetween() computed::check 11 15}}
@@ -638,6 +844,80 @@
   finishRoll(roll.rollId,computeObj);
 };
 
+// Advantage roll - 20+ template
+  const initiateRollAdv = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comroll20} {{char=@{character_name}}} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
+    let roll = await startRoll(message);
+    const computeObj = {};
+	
+  //const roll = await startRoll('&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}}');
+  //const computeObj = {};
+  
+  let rollResults = [1,2,3].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  let lowerResults = [];
+  var max1 = Math.max.apply(null, result); // get the max of the array
+  console.log("Max die");
+  console.log(max1);
+  result.splice(result.indexOf(max1), 1); // remove max from the array
+
+  console.log("Next two dice");
+  console.log(result);
+  console.log("Roll mod");
+  console.log(roll.results.rollmod.result);
+  let rollmod = roll.results.rollmod.result;
+  let max2 =  Math.max.apply(null, result);
+  console.log("Second max die");
+  console.log(max2);
+  computeObj.check = max1 + max2 + rollmod;
+  
+  computeObj.advroll = _.last(result);//Get the last die - the advantage die's result
+  finishRoll(roll.rollId,computeObj);
+};
+
+// Disadvantage roll - 20+ template
+  const initiateRollDis20 = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comroll20} {{char=@{character_name}}} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{disroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
+    let roll = await startRoll(message);
+    const computeObj = {};
+	
+  //const roll = await startRoll('&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}}');
+  //const computeObj = {};
+  
+  let rollResults = [1,2,3].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  let lowerResults = [];
+  var min1 = Math.min.apply(null, result); // get the min of the array
+  console.log("Min die");
+  console.log(min1);
+  result.splice(result.indexOf(min1), 1); // remove min from the array
+
+  console.log("Next two dice");
+  console.log(result);
+  console.log("Roll mod");
+  console.log(roll.results.rollmod.result);
+  let rollmod = roll.results.rollmod.result;
+  let min2 =  Math.min.apply(null, result);
+  console.log("Second min die");
+  console.log(min2);
+  computeObj.check = min1 + min2 + rollmod;
+  
+  computeObj.disroll = _.last(result);//Get the last die - the disadvantage die's result
+  finishRoll(roll.rollId,computeObj);
+};
+
 const parseClickTrigger = function(string){
   let match = string.match(/clicked:(?:(repeating_[^_]+)_([^_]+)_)?(.+)/);
   match.shift();
@@ -647,17 +927,32 @@ const parseClickTrigger = function(string){
 //Content for advantage and disadvantage rolls is identifal here
 const rollContent = {
     advexplorethewild:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Explore the Wild}} {{statused=Daring}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}',
-	disexplorethewild:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Explore the Wild}} {{statused=Daring}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}'
+	disexplorethewild:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Explore the Wild}} {{statused=Daring}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}',
+	advconfrontyourfears:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Confront Your Fears}}  {{success=@{confrontyourfearssuccess}}} {{partial=@{confrontyourfearspartial}}} {{miss=@{confrontyourfearsmiss}}}',
+	disconfrontyourfears:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Confront Your Fears}}  {{success=@{confrontyourfearssuccess}}} {{partial=@{confrontyourfearspartial}}} {{miss=@{confrontyourfearsmiss}}}',
+	adv20parlaywiththestrange:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Parlay with the Strange}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}',
+	dis20parlaywiththestrange:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Parlay with the Strange}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}'
 };
 
-const rollButtonsAdv = ["advexplorethewild"];
+const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears"];
 rollButtonsAdv.forEach((button)=>{
     on(`clicked:${button}`,initiateRollAdv);
 });
 
-const rollButtonsDis = ["disexplorethewild"];
+const rollButtonsDis = ["disexplorethewild","disconfrontyourfears"];
 rollButtonsDis.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis);
+});
+
+//Versions for the template with 20+ giving a new result
+const rollButtonsAdv20 = ["adv20parlaywiththestrange"];
+rollButtonsAdv20.forEach((button)=>{
+    on(`clicked:${button}`,initiateRollAdv20);
+});
+
+const rollButtonsDis20 = ["dis20parlaywiththestrange"];
+rollButtonsDis20.forEach((button)=>{
+    on(`clicked:${button}`,initiateRollDis20);
 });
   
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
