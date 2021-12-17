@@ -202,9 +202,12 @@
 			<h2 class="sheet-middle-title" > On Foot Moves </h2>
 			
 			<button type='action' name='act_advexplorethewild' class="sheet-rollbutton daring advantage" title="When you lead the group forward into the wild">Explore the Wild</button>
-			
 			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you lead the group forward into the wild" > Explore the Wild </button>
-			<button type="roll" name="roll_explorethewild" value='&{template:com} {{char=@{character_name}}} {{move=Explore the Wild}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring}}]]}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring disadvantage" title="When you lead the group forward into the wild"  > Explore the Wild </button>
+			<button type='action' name='act_disexplorethewild' class="sheet-rollbutton daring disadvantage" title="When you lead the group forward into the wild">Explore the Wild</button>
+
+			
+			
+			
 			
 			<h2 class="sheet-middle-title" > Stress Release </h2>
 			
@@ -437,11 +440,6 @@
         <tr>
             <td><span>Result: </span>{{check}} </td>
         </tr>
-		{{#advroll}}
-		<tr>
-            <td><span>Advantage Die: </span>{{advroll}} </td>
-        </tr>
-		{{/advroll}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -493,9 +491,22 @@
         </tr>
 		{{#advroll}}
 		<tr>
-            <td><span>Advantage Die: </span>{{computed::advroll}} </td>
+            <td><span>Advantage Die: </span>{{computed::advroll}}
+			{{#rollLess() computed::advroll 2}}
+                <span style="color: red;font-weight:bold;"> &nbsp; &nbsp; Fault</span>
+            {{/rollLess() computed::advroll 2}}
+			</td>
         </tr>
 		{{/advroll}}
+		{{#disroll}}
+		<tr>
+            <td><span>Disadvantage Die: </span>{{computed::disroll}}
+			{{#rollGreater() computed::disroll 9}}
+                <span style="color: red;font-weight:bold;"> &nbsp; &nbsp; Fault</span>
+            {{/rollGreater() computed::disroll 9}}
+			</td>
+        </tr>
+		{{/disroll}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -553,10 +564,11 @@
 
 <script type="text/worker">
   
-  const initiateRoll = async function(event){
+  // Advantage roll
+  const initiateRollAdv = async function(event){
   
   let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
-    let message = `&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
+    let message = `&{template:comroll} {{char=@{character_name}}} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
     let roll = await startRoll(message);
     const computeObj = {};
 	
@@ -564,19 +576,65 @@
   //const computeObj = {};
   
   let rollResults = [1,2,3].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
   console.log(rollResults);
   let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
   console.log(result);
   let lowerResults = [];
   var max1 = Math.max.apply(null, result); // get the max of the array
+  console.log("Max die");
   console.log(max1);
-  let rollResultsReduce = result.splice(result.indexOf(max1), 1); // remove max from the array
-  console.log(rollResultsReduce);
-  let max2 =  Math.max.apply(null, rollResultsReduce);
+  result.splice(result.indexOf(max1), 1); // remove max from the array
+
+  console.log("Next two dice");
+  console.log(result);
+  console.log("Roll mod");
+  console.log(roll.results.rollmod.result);
+  let rollmod = roll.results.rollmod.result;
+  let max2 =  Math.max.apply(null, result);
+  console.log("Second max die");
   console.log(max2);
-  computeObj.check = max1 + max2;
+  computeObj.check = max1 + max2 + rollmod;
   
   computeObj.advroll = _.last(result);//Get the last die - the advantage die's result
+  finishRoll(roll.rollId,computeObj);
+};
+
+// Disadvantage roll
+  const initiateRollDis = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comroll} {{char=@{character_name}}} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{disroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
+    let roll = await startRoll(message);
+    const computeObj = {};
+	
+  //const roll = await startRoll('&{template:comroll} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}}');
+  //const computeObj = {};
+  
+  let rollResults = [1,2,3].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  let lowerResults = [];
+  var min1 = Math.min.apply(null, result); // get the min of the array
+  console.log("Min die");
+  console.log(min1);
+  result.splice(result.indexOf(min1), 1); // remove min from the array
+
+  console.log("Next two dice");
+  console.log(result);
+  console.log("Roll mod");
+  console.log(roll.results.rollmod.result);
+  let rollmod = roll.results.rollmod.result;
+  let min2 =  Math.min.apply(null, result);
+  console.log("Second min die");
+  console.log(min2);
+  computeObj.check = min1 + min2 + rollmod;
+  
+  computeObj.disroll = _.last(result);//Get the last die - the disadvantage die's result
   finishRoll(roll.rollId,computeObj);
 };
 
@@ -585,17 +643,22 @@ const parseClickTrigger = function(string){
   match.shift();
   return match;
 };
+
+//Content for advantage and disadvantage rolls is identifal here
 const rollContent = {
-    advexplorethewild:'{{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}}',
-    acrobatics:`{{success=@{acrobaticssuccess}}} {{partial=@{acrobaticspartial}}}`
+    advexplorethewild:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Explore the Wild}} {{statused=Daring}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}',
+	disexplorethewild:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Explore the Wild}} {{statused=Daring}} {{success=@{explorethewildsuccess}}} {{partial=@{explorethewildpartial}}} {{miss=@{genericmiss}}}'
 };
 
 const rollButtonsAdv = ["advexplorethewild"];
 rollButtonsAdv.forEach((button)=>{
-    on(`clicked:${button}`,initiateRoll);
+    on(`clicked:${button}`,initiateRollAdv);
 });
 
-  
+const rollButtonsDis = ["disexplorethewild"];
+rollButtonsDis.forEach((button)=>{
+    on(`clicked:${button}`,initiateRollDis);
+});
   
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
   rollStateRadioValues.forEach(function(value) {
