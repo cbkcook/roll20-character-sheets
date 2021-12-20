@@ -232,7 +232,7 @@
 			<button type='action' name='act_disindulgeinviceunfamiliar' class="sheet-rollbuttonlong daring disadvantage" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help.">Indulge in Vice - Unfamiliar</button>
 			
 			<!-- End of Night - add here -->
-			
+			<button type='action' name='act_endofnight' class="sheet-rollbutton" title="When you end the night, or hit 5 Vice">End of Night</button>
 			
 			<button type="roll" name="roll_qualitytime" value='&{template:comtext} {{char=@{character_name}}} {{move=Quality Time}} {{movedescription=@{qualitytime}}}' class="sheet-rollbutton" title="When you devote time and attention to your trusting Confidant" > Quality Time</button>
 			
@@ -573,6 +573,20 @@
 			<span class="sheet-action">Result 10- : </span>
 			<textarea name="attr_indulgeinviceunfamiliarmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, suffer worsened consequences.
 			</textarea>
+		</div>
+	</div>
+	
+	<!-- End of Night -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_endofnightdesc" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you end the night, or hit 5 Vice,</i> roll 1d20 for each mark on the Vice Track, then clear the track. You can spend Attendant holds after you roll to retroactively add a +1 to all dice. On an 11-15, remove 1 Stress. 16+, remove 2 Stress. If you get 3 or more misses (1-10), choose one below:<!--
+			--><ul><!--
+				--><li>You become Addicted to a Vice you indulged.</li><!--
+				--><li>You become Immune to a Vice you indulged.</li><!--
+				--><li>You take a -1 Ongoing to all your rolls for the next routine.</li><!--
+			--></ul><!--
+			--></textarea>
 		</div>
 	</div>
 	
@@ -998,6 +1012,34 @@
     </table>
 </rolltemplate>
 
+<!-- Roll template - custom roll parsing - end of night -->
+
+
+<rolltemplate class="sheet-rolltemplate-comrolleon">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}} </th></tr>
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
+        <tr>
+            <td><span>Result: </span>{{computed::check}} </td>
+        </tr>
+		{{#stressremoved}}
+		<tr>
+            <td><span>Stress Removed: </span>{{computed::stressremoved}}</td>
+        </tr>
+		{{/stressremoved}}
+		{{#misses}}
+		<tr>
+            <td><span>Misses: </span>{{computed::misses}}</td>
+        </tr>
+		{{/misses}}
+		
+    </table>
+</rolltemplate>
+
+
+
 <!-- Roll template - version for when there is only text, no rolling -->
 
 
@@ -1217,6 +1259,77 @@ const rollButtonsDis20 = ["dis20parlaywiththestrange","dis20seizetheinitiative"]
 rollButtonsDis20.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis20);
 });
+
+
+//End of Night has a fully unique roll, and roll template
+
+  const initiateRolleon = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrolleon} {{char=@{character_name}}} {{move=End of Night}} {{infodesc=@{endofnightdesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{stressremoved=[[0[computed roll]]]}} {{misses=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get vice, and reset it to zero
+  getAttrs(["vice"], function(values) {
+    let vice = parseInt(values.vice)||0;
+	
+        setAttrs({                            
+		    vice: 0
+		});
+		
+	  console.log("Vice count");
+	  console.log(vice);
+	  console.log("Number of results to match vice level");
+	  const slicedArray = result.slice(0, vice);
+	  console.log(slicedArray);
+	  computeObj.check = slicedArray;
+	  
+	  //Count stress removed
+	  console.log("16+ results");
+	  let resultsStress2 = returnLarger(slicedArray, 15);
+	  	  
+	  console.log(resultsStress2);
+	  console.log(resultsStress2.length);
+	  
+	  console.log("11-15 results");
+	  let resultsStress1 = returnLarger(slicedArray, 10);
+	  	  
+	  console.log(resultsStress1);
+	  console.log(resultsStress1.length - resultsStress2.length);
+	  
+	  computeObj.stressremoved = (resultsStress2.length*2) + (resultsStress1.length - resultsStress2.length);//16+ worth 2, 11-15 worth 1
+	  
+	  console.log("Misses");
+	  
+	  computeObj.misses = (slicedArray.length - resultsStress1.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+
+let returnLarger = (arr, num) => {
+  return arr.reduce((acc, curr)=>{  
+    if(curr > num){
+      return acc.concat(curr)  // Concatenate the acc with arr
+    }else{
+      return acc
+    }
+  }, [])   // Initialize the accumulator with an empty array
+}
+
+on('clicked:endofnight',initiateRolleon);
   
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
   rollStateRadioValues.forEach(function(value) {
