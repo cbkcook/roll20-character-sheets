@@ -234,18 +234,26 @@
 			<!-- End of Night - add here -->
 			
 			
+			<button type="roll" name="roll_qualitytime" value='&{template:comtext} {{char=@{character_name}}} {{move=Quality Time}} {{movedescription=@{qualitytime}}}' class="sheet-rollbutton" title="When you devote time and attention to your trusting Confidant" > Quality Time</button>
+			
 			
 			<h2 class="sheet-middle-title" > Other Ground Moves </h2>
 			
 			<button type='action' name='act_advpresstheissue' class="sheet-rollbutton advantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
-			<button type="roll" name="roll_presstheissue" value='&{template:com} {{char=@{character_name}}} {{move=Press the Issue}} {{showroll=[[1]]}} {{check=[[2d10 + ?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}}]]}} {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton flat" title="When you try to get somebody to do what you want and have leverage" > Press the Issue </button>
+			<button type="roll" name="roll_presstheissue" value='&{template:com} {{char=@{character_name}}} {{move=Press the Issue}} {{showroll=[[1]]}} {{check=[[2d10 + ?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}}]]}} {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton flat" title="When you try to get somebody to do what you want and have leverage" > Press the Issue </button>
 			<button type='action' name='act_dispresstheissue' class="sheet-rollbutton disadvantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
 			
 			<button type='action' name='act_advturnonthecharm' class="sheet-rollbutton daring advantage" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect.">Turn on the Charm</button>
 			<button type="roll" name="roll_turnonthecharm" value='&{template:com} {{char=@{character_name}}} {{move=Turn on the Charm}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect." > Turn on the Charm </button>
 			<button type='action' name='act_disturnonthecharm' class="sheet-rollbutton daring disadvantage" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect.">Turn on the Charm</button>
 			
+			<button type='action' name='act_advgetreal' class="sheet-rollbutton advantage calm" title="When you speak the truth from your heart, and they are willing to listen">Get Real</button>
+			<button type="roll" name="roll_getreal" value='&{template:com} {{char=@{character_name}}} {{move=Get Real}} {{showroll=[[1]]}} {{statused=Calm}} {{check=[[2d10 + @{calm} + @{roll_mod} - @{injury}}]]}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}' class="sheet-rollbutton flat calm" title="When you try to get somebody to do what you want and have leverage" > Get Real </button>
+			<button type='action' name='act_disgetreal' class="sheet-rollbutton disadvantage calm" title="When you speak the truth from your heart, and they are willing to listen">Get Real</button>
 			
+			<button type='action' name='act_advbrawl' class="sheet-rollbutton advantage hard" title="When you start something, verbal or physical (not intentionally lethal)">Brawl</button>
+			<button type="roll" name="roll_brawl" value='&{template:com} {{char=@{character_name}}} {{move=Brawl}} {{showroll=[[1]]}} {{statused=Hard}} {{check=[[2d10 +@{hard} + @{roll_mod} - @{injury}}]]}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}' class="sheet-rollbutton flat hard" title="When you start something, verbal or physical (not intentionally lethal)" > Brawl </button>
+			<button type='action' name='act_disbrawl' class="sheet-rollbutton disadvantage hard" title="When you start something, verbal or physical (not intentionally lethal)">Brawl</button>
 			
 			
 			<h2 class="sheet-middle-title" > Universal Moves </h2>
@@ -568,7 +576,14 @@
 		</div>
 	</div>
 	
-	
+	<!-- Quality Time -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_qualitytime" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you devote time and attention to your trusting Confidant,</i> remove 2 Stress. This move can be used once per Routine. 
+			</textarea>
+		</div>
+	</div>
 	
 	
 	
@@ -617,9 +632,74 @@
 		</div>
 	</div>
 	
+	<!-- Get Real possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_getrealsuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a hit, you do it. On a 16+, both of you lose 1 additional Stress.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_getrealpartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On a hit, you do it.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_getrealmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, if the target is a PC, they choose one below, and the GM asks “What did they say which hurt you?” NPCs react at GM discretion.<!--
+			--><ul><!--
+				--><li>The goal is achieved, but the target has to do most of the work. They don’t lose Stress, and take 1 miss forward to End of Night.</li><!--
+				--><li>Both sides must Vent immediately. The target must be the other participant. The requirement to be Burnt Out is waived.</li><!--
+				--><li>The target loses 3 Stress as they throw a punch and start a Brawl!</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
 	
-	
-	
+	<!-- Brawl possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_brawlsuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, choose 2:<!--
+			--><ul><!--
+				--><li>Hurt somebody bad.</li><!--
+					--><ul><!--
+						--><li>Hurt a whole lot of folks.</li><!--
+					--></ul><!--
+				--><li>Win the fight, whatever that means.</li><!--
+				--><li>Get out clean and relatively unscathed.</li><!--
+				--><li>Remove 1 Stress.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_brawlpartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On a 11-15, choose 1:<!--
+			--><ul><!--
+				--><li>Hurt somebody bad.</li><!--
+					--><ul><!--
+						--><li>Hurt a whole lot of folks.</li><!--
+					--></ul><!--
+				--><li>Win the fight, whatever that means.</li><!--
+				--><li>Get out clean and relatively unscathed.</li><!--
+				--><li>Remove 1 Stress.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_brawlmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">The consequences of not getting out clean are up to the GM and can include things such as:<!--
+			--><ul><!--
+				--><li>1 Injury from fighting.</li><!--
+				--><li>1 additional injury from fighting very serious people.</li><!--
+				--><li>Property damage or social disruption.</li><!--
+				--><li>Stress taken.</li><!--
+				--><li>Trust being broken.</li><!--
+				--><li>A response from whatever passes for law enforcement in the town.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
 	
 	
 
@@ -1105,18 +1185,24 @@ const rollContent = {
 	dis20seizetheinitiative:'{{rollmod=[[ @{daring} + @{roll_mod} - @{injury}]]}} {{move=Seize the Initiative}} {{statused=Daring}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}',
 	advindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
 	disindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
-	advpresstheissue:'{{rollmod=[[?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
-	dispresstheissue:'{{rollmod=[[?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	advpresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	dispresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
 	advturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}',
-	disturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}'
+	disturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}',
+	advgetreal:'{{rollmod=[[@{calm} + @{roll_mod} - @{injury}]]}} {{move=Get Real}} {{statused=Calm}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}',
+	disgetreal:'{{rollmod=[[@{calm} + @{roll_mod} - @{injury}]]}} {{move=Get Real}} {{statused=Calm}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}',
+	advbrawl:'{{rollmod=[[@{hard} + @{roll_mod} - @{injury}]]}} {{move=Brawl}} {{statused=Hard}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}',
+	disbrawl:'{{rollmod=[[@{hard} + @{roll_mod} - @{injury}]]}} {{move=Brawl}} {{statused=Hard}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}'
 };
 
-const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears","advindulgeinviceunfamiliar","advpresstheissue","advturnonthecharm"];
+
+
+const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears","advindulgeinviceunfamiliar","advpresstheissue","advturnonthecharm","advgetreal","advbrawl"];
 rollButtonsAdv.forEach((button)=>{
     on(`clicked:${button}`,initiateRollAdv);
 });
 
-const rollButtonsDis = ["disexplorethewild","disconfrontyourfears","disindulgeinviceunfamiliar","dispresstheissue","disturnonthecharm"];
+const rollButtonsDis = ["disexplorethewild","disconfrontyourfears","disindulgeinviceunfamiliar","dispresstheissue","disturnonthecharm","disgetreal","disbrawl"];
 rollButtonsDis.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis);
 });

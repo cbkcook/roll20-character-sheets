@@ -876,6 +876,21 @@ h2.sheet-middle-title{
 	background-color: rgb(245, 239, 73);
 }
 
+.sheet-pilotmoves button[type=roll].calm,
+.sheet-pilotmoves button[type=action].calm {
+	background-color: rgb(133, 222, 219);
+}
+
+.sheet-pilotmoves button[type=roll].hard,
+.sheet-pilotmoves button[type=action].hard {
+	background-color: rgb(235, 113, 11);
+}
+
+.sheet-pilotmoves button[type=roll].keen,
+.sheet-pilotmoves button[type=action].keen {
+	background-color: rgb(121, 219, 107);
+}
+
 .sheet-pilotmoves button[type=roll].sheet-rollbuttonlong,
 .sheet-pilotmoves button[type=action].sheet-rollbuttonlong {
 	
@@ -891,7 +906,7 @@ h2.sheet-middle-title{
 	border-radius: 0;
 	text-align: center;
 	
-	/*line-height: 20px;*/
+	/*line-height: 19px;*/
 	padding-top: 2px;
 	padding-bottom: 4px;
 	padding-left: 0px;
