@@ -231,7 +231,6 @@
 			<button type="roll" name="roll_indulgeinviceunfamiliar" value='&{template:com} {{char=@{character_name}}} {{move=Indulge in Vice - Unfamiliar}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}' class="sheet-rollbuttonlong daring flat" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help." > Indulge in Vice - Unfamiliar </button>
 			<button type='action' name='act_disindulgeinviceunfamiliar' class="sheet-rollbuttonlong daring disadvantage" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help.">Indulge in Vice - Unfamiliar</button>
 			
-			<!-- End of Night - add here -->
 			<button type='action' name='act_endofnight' class="sheet-rollbutton" title="When you end the night, or hit 5 Vice">End of Night</button>
 			
 			<button type="roll" name="roll_qualitytime" value='&{template:comtext} {{char=@{character_name}}} {{move=Quality Time}} {{movedescription=@{qualitytime}}}' class="sheet-rollbutton" title="When you devote time and attention to your trusting Confidant" > Quality Time</button>
@@ -261,6 +260,10 @@
 			<button type="roll" name="roll_breaktrust" value='&{template:comtext} {{char=@{character_name}}} {{move=Break Trust}} {{movedescription=@{breaktrust}}}' class="sheet-rollbutton" title="When you lose trust in a comrade" > Break Trust</button>
 			
 			<button type="roll" name="roll_restoretrust" value='&{template:comtext} {{char=@{character_name}}} {{move=Restore Trust}} {{movedescription=@{restoretrust}}}' class="sheet-rollbutton" title="When you show faith in a comrade" > Restore Trust</button>
+			
+			<button type="roll" name="roll_helphinder" value='&{template:comtext} {{char=@{character_name}}} {{move=Help/Hinder}} {{movedescription=@{helphinder}}}' class="sheet-rollbutton" title="When you help/hinder a comrade" > Help/Hinder</button>
+			
+			<button type="roll" name="roll_discoverbeauty" value='&{template:comtext} {{char=@{character_name}}} {{move=Discover Beauty}} {{movedescription=@{discoverbeauty}}}' class="sheet-rollbutton" title="Once per routine, when you witness beauty in the world" > Discover Beauty</button>
 			
 			
 			
@@ -741,7 +744,23 @@
 		</div>
 	</div>
 	
+	<!-- Help/Hinder -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_helphinder" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you put yourself at risk help a comrade,</i> give them Advantage forward. If you didn’t trust them, Restore Trust. <p></p> <i>When you make a point to hinder a comrade,</i> give them Disadvantage forward. If you trusted them, Break Trust. 
+			</textarea>
+		</div>
+	</div>
 	
+	<!-- Discover Beauty -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_discoverbeauty" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>Once per routine, when you witness beauty in the world,</i> describe how you are moved by what you see, and lose 1 Stress. 
+			</textarea>
+		</div>
+	</div>
 	
 	
 	
