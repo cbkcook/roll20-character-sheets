@@ -213,16 +213,38 @@
 			<button type="roll" name="roll_parlaywiththestrange" value='&{template:com20} {{char=@{character_name}}} {{move=Parlay with the Strange}} {{showroll=[[1]]}} {{check=[[2d10  + @{roll_mod} - @{injury}}]]}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}' class="sheet-rollbutton flat" title="When you try to strike a deal with supernatural forces, state what you want and name two things you’d be willing to do or lose in exchange. If the offers are worthy, roll" > Parlay with the Strange </button>
 			<button type='action' name='act_dis20parlaywiththestrange' class="sheet-rollbutton disadvantage" title="When you try to strike a deal with supernatural forces, state what you want and name two things you’d be willing to do or lose in exchange. If the offers are worthy, roll">Parlay with the Strange</button>
 			
+			<button type='action' name='act_adv20seizetheinitiative' class="sheet-rollbutton advantage daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage.">Seize the Initiative</button>
+			<button type="roll" name="roll_seizetheinitiative" value='&{template:com20} {{char=@{character_name}}} {{move=Seize the Initiative}} {{showroll=[[1]]}} {{check=[[2d10 + @{daring}  + @{roll_mod} - @{injury}}]]}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}' class="sheet-rollbutton flat daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage." > Seize the Initiative </button>
+			<button type='action' name='act_dis20seizetheinitiative' class="sheet-rollbutton disadvantage daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage.">Seize the Initiative</button>
 			
-			
+			<!-- Personal Attack - add here -->
 			
 			
 			
 			<h2 class="sheet-middle-title" > Stress Release </h2>
 			
+			<button type="roll" name="roll_vent" value='&{template:comtext} {{char=@{character_name}}} {{move=Vent}} {{movedescription=@{vent}}}' class="sheet-rollbutton" title="When you are Burnt Out and use a Vent action" > Vent</button>
+			
+			<button type="roll" name="roll_indulgeinvicefamiliar" value='&{template:comtext} {{char=@{character_name}}} {{move=Indulge In Vice - Familiar}} {{movedescription=@{indulgeinvicefamiliar}}}' class="sheet-rollbuttonlong" title="When you indulge in a familiar Vice" > Indulge in Vice - Familiar</button>
+			
+			<button type='action' name='act_advindulgeinviceunfamiliar' class="sheet-rollbuttonlong daring advantage" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help.">Indulge in Vice - Unfamiliar</button>
+			<button type="roll" name="roll_indulgeinviceunfamiliar" value='&{template:com} {{char=@{character_name}}} {{move=Indulge in Vice - Unfamiliar}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}' class="sheet-rollbuttonlong daring flat" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help." > Indulge in Vice - Unfamiliar </button>
+			<button type='action' name='act_disindulgeinviceunfamiliar' class="sheet-rollbuttonlong daring disadvantage" title="When you engage in an unfamiliar Vice. If somebody familiar with an unfamiliar vice guides you, that’s Help.">Indulge in Vice - Unfamiliar</button>
+			
+			<!-- End of Night - add here -->
+			
 			
 			
 			<h2 class="sheet-middle-title" > Other Ground Moves </h2>
+			
+			<button type='action' name='act_advpresstheissue' class="sheet-rollbutton advantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
+			<button type="roll" name="roll_presstheissue" value='&{template:com} {{char=@{character_name}}} {{move=Press the Issue}} {{showroll=[[1]]}} {{check=[[2d10 + ?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}}]]}} {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton flat" title="When you try to get somebody to do what you want and have leverage" > Press the Issue </button>
+			<button type='action' name='act_dispresstheissue' class="sheet-rollbutton disadvantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
+			
+			<button type='action' name='act_advturnonthecharm' class="sheet-rollbutton daring advantage" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect.">Turn on the Charm</button>
+			<button type="roll" name="roll_turnonthecharm" value='&{template:com} {{char=@{character_name}}} {{move=Turn on the Charm}} {{showroll=[[1]]}} {{statused=Daring}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton daring flat" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect." > Turn on the Charm </button>
+			<button type='action' name='act_disturnonthecharm' class="sheet-rollbutton daring disadvantage" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect.">Turn on the Charm</button>
+			
 			
 			
 			
@@ -463,6 +485,141 @@
 		</div>
 	</div>
 	
+	<!-- Seize the Initiative possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 20+ : </span>
+			<textarea name="attr_seizetheinitiativebest" class="sheet-actiondesc" placeholder="Best Success" title="Best Success">On a 16+, you find cover and take your next steps rationally. On a 20+, you also catch them flat-footed and act before anyone else.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16-19 : </span>
+			<textarea name="attr_seizetheinitiativesuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, you find cover and take your next steps rationally.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_seizetheinitiativepartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, choose 1:<!--
+			--><ul><!--
+				--><li>You see red, rushing in or shooting first, but fail to get to cover.</li><!--
+				--><li>You run or hide. You can’t attack, but you’re a low priority target. </li><!--
+				--><li>You freeze up after you find cover, and act after everyone else. </li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_seizetheinitiativemiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, the GM chooses 1 for you:<!--
+			--><ul><!--
+				--><li>You see red, rushing in or shooting first, but fail to get to cover.</li><!--
+				--><li>You run or hide. You can’t attack, but you’re a low priority target. </li><!--
+				--><li>You freeze up after you find cover, and act after everyone else. </li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
+	
+	
+	
+	<!-- Stress Release Move outcomes -->
+	
+	<!-- Vent -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_vent" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you are Burnt Out and use a Vent action,</i> lose 2 Stress. If one or more of your comrades bears the brunt of the ire or consequences, you lose 3 stress instead, but they take 1 Stress each. 
+			</textarea>
+		</div>
+	</div>
+	
+	<!-- Indulge in Vice - Familiar -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_indulgeinvicefamiliar" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you indulge a Vice,</i> add +1 to the Vice Track.<!--
+			--><ul><!--
+				--><li><i>If you indulge alone,</i> suffer a consequence</li><!--
+				--><li><i>If you and a comrade indulge together,</i> describe how you get disruptive, argumentative, or distracted. </li><!--
+			--></ul><!--
+			--><i>When you go back to the same Vice again,</i> additionally take 1 miss forward to End of Night, and worsened consequences. </textarea>
+		</div>
+	</div>
+	
+	<!-- Indulge in Vice - Unfamiliar -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result: </span>
+			<textarea name="attr_indulgeinviceunfamiliardesc" class="sheet-actiondesc" placeholder="Great Success" title="Great Success"><i>When you indulge a Vice,</i> add +1 to the Vice Track.<!--
+			--><ul><!--
+				--><li><i>If you indulge alone,</i> suffer a consequence</li><!--
+				--><li><i>If you and a comrade indulge together,</i> describe how you get disruptive, argumentative, or distracted. </li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_indulgeinviceunfamiliarsuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, add it as a Vice.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 10- : </span>
+			<textarea name="attr_indulgeinviceunfamiliarmiss" class="sheet-actiondesc" placeholder="Miss" title="Miss">On a miss, suffer worsened consequences.
+			</textarea>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<!-- Other Ground Move outcomes -->
+	
+	<!-- Press the Issue possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_presstheissuesuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a hit, they’ll do it.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_presstheissuepartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, the GM chooses 1:<!--
+			--><ul><!--
+				--><li>They need something from you first.</li><!--
+				--><li>They’ll resent this, and that’ll be a problem later.</li><!--
+				--><li>They’ll do it, but only the bare minimum.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
+	
+	<!-- Turn on the Charm possible outcomes -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_turnonthecharmsuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, they choose 2:<!--
+			--><ul><!--
+				--><li>They throw themselves at you.</li><!--
+				--><li>They do you a favour or show you a kindness.</li><!--
+				--><li>They’ll listen to what you have to say.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_turnonthecharmpartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, they choose 1:<!--
+			--><ul><!--
+				--><li>They throw themselves at you.</li><!--
+				--><li>They do you a favour or show you a kindness.</li><!--
+				--><li>They’ll listen to what you have to say.</li><!--
+			--></ul><!--
+			--></textarea>
+		</div>
+	</div>
+	
+	
+	
+	
 	
 	
 
@@ -516,6 +673,9 @@
         <tr>
             <td><span>Result: </span>{{check}} </td>
         </tr>
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -564,6 +724,9 @@
         <tr>
             <td><span>Result: </span>{{check}} </td>
         </tr>
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -639,6 +802,9 @@
 			</td>
         </tr>
 		{{/disroll}}
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -705,6 +871,9 @@
 			</td>
         </tr>
 		{{/disroll}}
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
         <tr></tr>
         {{#check}}
             {{#rollTotal() showroll 1}}
@@ -845,7 +1014,7 @@
 };
 
 // Advantage roll - 20+ template
-  const initiateRollAdv = async function(event){
+  const initiateRollAdv20 = async function(event){
   
   let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
     let message = `&{template:comroll20} {{char=@{character_name}}} {{showroll=[[1]]}}  {{check=[[0[computed result]]]}} {{advroll=[[0[computed roll]]]}} {{roll1=[[1d10]]}} {{roll2=[[1d10]]}} {{roll3=[[1d10]]}} ${rollContent[button]}`;
@@ -931,26 +1100,34 @@ const rollContent = {
 	advconfrontyourfears:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Confront Your Fears}}  {{success=@{confrontyourfearssuccess}}} {{partial=@{confrontyourfearspartial}}} {{miss=@{confrontyourfearsmiss}}}',
 	disconfrontyourfears:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Confront Your Fears}}  {{success=@{confrontyourfearssuccess}}} {{partial=@{confrontyourfearspartial}}} {{miss=@{confrontyourfearsmiss}}}',
 	adv20parlaywiththestrange:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Parlay with the Strange}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}',
-	dis20parlaywiththestrange:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Parlay with the Strange}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}'
+	dis20parlaywiththestrange:'{{rollmod=[[ @{roll_mod} - @{injury}]]}} {{move=Parlay with the Strange}} {{best=@{parlaywiththestrangebest}}} {{success=@{parlaywiththestrangesuccess}}} {{partial=@{parlaywiththestrangepartial}}} {{miss=@{parlaywiththestrangemiss}}}',
+	adv20seizetheinitiative:'{{rollmod=[[ @{daring} + @{roll_mod} - @{injury}]]}} {{move=Seize the Initiative}} {{statused=Daring}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}',
+	dis20seizetheinitiative:'{{rollmod=[[ @{daring} + @{roll_mod} - @{injury}]]}} {{move=Seize the Initiative}} {{statused=Daring}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}',
+	advindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
+	disindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
+	advpresstheissue:'{{rollmod=[[?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	dispresstheissue:'{{rollmod=[[?{Select Ability to Use|with Money pay their price and they’ll do it,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	advturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}',
+	disturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}'
 };
 
-const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears"];
+const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears","advindulgeinviceunfamiliar","advpresstheissue","advturnonthecharm"];
 rollButtonsAdv.forEach((button)=>{
     on(`clicked:${button}`,initiateRollAdv);
 });
 
-const rollButtonsDis = ["disexplorethewild","disconfrontyourfears"];
+const rollButtonsDis = ["disexplorethewild","disconfrontyourfears","disindulgeinviceunfamiliar","dispresstheissue","disturnonthecharm"];
 rollButtonsDis.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis);
 });
 
 //Versions for the template with 20+ giving a new result
-const rollButtonsAdv20 = ["adv20parlaywiththestrange"];
+const rollButtonsAdv20 = ["adv20parlaywiththestrange","adv20seizetheinitiative"];
 rollButtonsAdv20.forEach((button)=>{
     on(`clicked:${button}`,initiateRollAdv20);
 });
 
-const rollButtonsDis20 = ["dis20parlaywiththestrange"];
+const rollButtonsDis20 = ["dis20parlaywiththestrange","dis20seizetheinitiative"];
 rollButtonsDis20.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis20);
 });

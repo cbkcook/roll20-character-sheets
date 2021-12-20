@@ -359,7 +359,7 @@ input[type="radio"].tab:checked + label{
   grid-template-columns: 213px;
   display: grid;
   grid-gap: 4px;
-  grid-template-rows: repeat(auto-fill, 30px);
+  grid-template-rows: auto;
   position: absolute;
   left: 680px; top: 302px;
   background-image: url("https://i.ibb.co/Pr2N93v/brushed-metal-1.jpg"); /*Metal background, free to use*/
@@ -884,14 +884,14 @@ h2.sheet-middle-title{
 	background-image: none;
 	color: black;
 	width: 190px;
-	height: 40px;
+	height: 38px;
 	font-size: 20px;
 	border-style: none;
 	margin: auto;
 	border-radius: 0;
 	text-align: center;
 	
-	/*line-height: 40px;*/
+	/*line-height: 20px;*/
 	padding-top: 2px;
 	padding-bottom: 4px;
 	padding-left: 0px;
