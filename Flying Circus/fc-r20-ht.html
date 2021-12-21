@@ -218,8 +218,11 @@
 			<button type='action' name='act_dis20seizetheinitiative' class="sheet-rollbutton disadvantage daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage.">Seize the Initiative</button>
 			
 			<!-- Personal Attack - add here -->
+			<button type='action' name='act_personalattackoffensive' class="sheet-rollbuttonlong flat hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
 			
+			<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <label class="sheet-big-label" > Hits </label> <input name="attr_hitspersonal" class="sheet-stat-inputs" type="number" value="0" /> </span>
 			
+			<button type='action' name='act_personalattackdefensive' class="sheet-rollbuttonlong flat keen" title="When a PC is attacked">Personal Attack - Defensive</button>
 			
 			<h2 class="sheet-middle-title" > Stress Release </h2>
 			
@@ -530,6 +533,19 @@
 		</div>
 	</div>
 	
+	<!-- Personal Attack -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Desc : </span>
+			<textarea name="attr_personalattackoffensivedesc" class="sheet-actiondesc" placeholder="Best Success" title="Best Success">An 11+ hits for listed damage, a natural 20 is a Crit (against ground targets, x2 damage and ignores armour), a natural 1 is a jam or misfire. When firing against targets in cover or moving planes, only a 16+ hits. <i> When you use a melee weapon against a plane, </i> you may damage a Vital Part of your choice on an 11+ instead of doing structure damage.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Desc : </span>
+			<textarea name="attr_personalattackdefensivedesc" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">An 11+ hits for listed damage, a natural 20 is a Crit (against ground targets, x2 damage and ignores armour), a natural 1 is a jam or misfire. When firing against targets in cover or moving planes, only a 16+ hits.
+			</textarea>
+		</div>
+	</div>
 	
 	
 	<!-- Stress Release Move outcomes -->
@@ -1033,7 +1049,6 @@
 
 <!-- Roll template - custom roll parsing - end of night -->
 
-
 <rolltemplate class="sheet-rolltemplate-comrolleon">
     <table>
         <tr><th>{{char}}<br>rolls {{move}} </th></tr>
@@ -1057,7 +1072,51 @@
     </table>
 </rolltemplate>
 
+<!-- Roll template - custom roll parsing - personal attack -->
 
+<rolltemplate class="sheet-rolltemplate-comrollpa">
+    <table>
+        <tr><th>{{char}}<br>rolls {{move}} </th></tr>
+		{{#infodesc}}
+			<tr><td colspan="2"><div class="movedesc">{{infodesc}}</div></td></tr>
+		{{/infodesc}}
+        <tr>
+            <td><span>Raw Result: </span>{{computed::raw}} </td>
+        </tr>
+		{{#droppeddie}}
+		<tr>
+            <td><span>Dropped Die: </span>{{computed::droppeddie}}</td>
+        </tr>
+		{{/droppeddie}}
+		<tr>
+            <td><span>Modifier: </span>{{computed::modifier}} </td>
+        </tr>
+		<tr>
+            <td><span>Modified Result: </span>{{computed::check}} </td>
+        </tr>
+		{{#hitsregular}}
+		<tr>
+            <td><span>11+ Hits: </span>{{computed::hitsregular}}</td>
+        </tr>
+		{{/hitsregular}}
+		{{#hitsbetter}}
+		<tr>
+            <td><span>16+ Hits: </span>{{computed::hitsbetter}}</td>
+        </tr>
+		{{/hitsbetter}}
+		{{#crits}}
+		<tr>
+            <td><span>Crits: </span>{{computed::crits}}</td>
+        </tr>
+		{{/crits}}
+		{{#natones}}
+		<tr>
+            <td><span>Natural 1s: </span>{{computed::natones}}</td>
+        </tr>
+		{{/natones}}
+		
+    </table>
+</rolltemplate>
 
 <!-- Roll template - version for when there is only text, no rolling -->
 
@@ -1280,64 +1339,7 @@ rollButtonsDis20.forEach((button)=>{
 });
 
 
-//End of Night has a fully unique roll, and roll template
-
-  const initiateRolleon = async function(event){
-  
-  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
-    let message = `&{template:comrolleon} {{char=@{character_name}}} {{move=End of Night}} {{infodesc=@{endofnightdesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{stressremoved=[[0[computed roll]]]}} {{misses=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} `;
-    let roll = await startRoll(message);
-    const computeObj = {};
-  
-  let rollResults = [1,2,3,4,5].map((num)=>roll.results[`roll${num}`]);
-  console.log("Original rolls");
-  console.log(rollResults);
-  let result = rollResults.map(a => a.result);
-  console.log("Original rolls - easier format");
-  console.log(result);
-  
-  // Get vice, and reset it to zero
-  getAttrs(["vice"], function(values) {
-    let vice = parseInt(values.vice)||0;
-	
-        setAttrs({                            
-		    vice: 0
-		});
-		
-	  console.log("Vice count");
-	  console.log(vice);
-	  console.log("Number of results to match vice level");
-	  const slicedArray = result.slice(0, vice);
-	  console.log(slicedArray);
-	  computeObj.check = slicedArray;
-	  
-	  //Count stress removed
-	  console.log("16+ results");
-	  let resultsStress2 = returnLarger(slicedArray, 15);
-	  	  
-	  console.log(resultsStress2);
-	  console.log(resultsStress2.length);
-	  
-	  console.log("11-15 results");
-	  let resultsStress1 = returnLarger(slicedArray, 10);
-	  	  
-	  console.log(resultsStress1);
-	  console.log(resultsStress1.length - resultsStress2.length);
-	  
-	  computeObj.stressremoved = (resultsStress2.length*2) + (resultsStress1.length - resultsStress2.length);//16+ worth 2, 11-15 worth 1
-	  
-	  console.log("Misses");
-	  
-	  computeObj.misses = (slicedArray.length - resultsStress1.length);
-	  
-	  finishRoll(roll.rollId,computeObj);
-	
-	
-  });
-  
-  
-};
-
+//Used by other functions
 let returnLarger = (arr, num) => {
   return arr.reduce((acc, curr)=>{  
     if(curr > num){
@@ -1348,8 +1350,7 @@ let returnLarger = (arr, num) => {
   }, [])   // Initialize the accumulator with an empty array
 }
 
-on('clicked:endofnight',initiateRolleon);
-  
+
   const rollStateRadioValues = ["advantage","flat","disadvantage"];
   rollStateRadioValues.forEach(function(value) {
     on(`clicked:roll_state_${value}`, function() {
@@ -1758,4 +1759,145 @@ on('clicked:endofnight',initiateRolleon);
 		    });
         });
     })
+	
+
+
+
+
+
+
+// Custom Roll Parsing - for moves that need unique ones, generally with unique roll template too
+
+//End of Night has a fully unique roll, and roll template
+
+  const initiateRolleon = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrolleon} {{char=@{character_name}}} {{move=End of Night}} {{infodesc=@{endofnightdesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{stressremoved=[[0[computed roll]]]}} {{misses=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get vice, and reset it to zero
+  getAttrs(["vice"], function(values) {
+    let vice = parseInt(values.vice)||0;
+	
+        setAttrs({                            
+		    vice: 0
+		});
+		
+	  console.log("Vice count");
+	  console.log(vice);
+	  console.log("Number of results to match vice level");
+	  const slicedArray = result.slice(0, vice);
+	  console.log(slicedArray);
+	  computeObj.check = slicedArray;
+	  
+	  //Count stress removed
+	  console.log("16+ results");
+	  let resultsStress2 = returnLarger(slicedArray, 15);
+	  	  
+	  console.log(resultsStress2);
+	  console.log(resultsStress2.length);
+	  
+	  console.log("11-15 results");
+	  let resultsStress1 = returnLarger(slicedArray, 10);
+	  	  
+	  console.log(resultsStress1);
+	  console.log(resultsStress1.length - resultsStress2.length);
+	  
+	  computeObj.stressremoved = (resultsStress2.length*2) + (resultsStress1.length - resultsStress2.length);//16+ worth 2, 11-15 worth 1
+	  
+	  console.log("Misses");
+	  
+	  computeObj.misses = (slicedArray.length - resultsStress1.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:endofnight',initiateRolleon);
+  
+//Personal Attack - Offensive - flat roll
+
+  const initiateRollpaoffensive = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Offensive}} {{infodesc=@{personalattackoffensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","hard","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let hard = parseInt(values.hard)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = hard - injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:personalattackoffensive',initiateRollpaoffensive);
+ 
+	
+	
 </script>

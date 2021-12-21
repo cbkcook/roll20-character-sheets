@@ -50,7 +50,8 @@ label.sheet-big-label {
 }
 
 .sheet-topgrid input[type=number].sheet-stat-inputs,
-.sheet-nameline input[type=number].sheet-stat-inputs{
+.sheet-nameline input[type=number].sheet-stat-inputs,
+.sheet-pilotmoves input[type=number].sheet-stat-inputs{
 	
 	font-family: 'Balthazar', serif;
 	color: black;
@@ -556,7 +557,7 @@ input.sheet-char-inputs-long{
 }
 
 input.hard{
-	border-color: rgb(235, 113, 11);	
+	border-color: rgb(245, 35, 20);	
 }
 
 input.keen{
@@ -691,7 +692,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext table,
 .sheet-rolltemplate-comroll table,
 .sheet-rolltemplate-comroll20 table,
-.sheet-rolltemplate-comrolleon table {
+.sheet-rolltemplate-comrolleon table,
+.sheet-rolltemplate-comrollpa table {
     width: 98%;
 	border: 1px solid;
 	color: black;
@@ -704,7 +706,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext th,
 .sheet-rolltemplate-comroll th,
 .sheet-rolltemplate-comroll20 th,
-.sheet-rolltemplate-comrolleon th {
+.sheet-rolltemplate-comrolleon th,
+.sheet-rolltemplate-comrollpa th {
 	background-image: url("https://i.ibb.co/Pr2N93v/brushed-metal-1.jpg"); /*Metal background, free to use*/
 	/*background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Flying%20Circus/brushed-metal-1.jpg?raw=true");*/ /*Metal background, free to use*/
 	font-family: 'Balthazar', serif;
@@ -722,7 +725,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext .userscript-tcat,
 .sheet-rolltemplate-comroll .userscript-tcat,
 .sheet-rolltemplate-comroll20 .userscript-tcat,
-.sheet-rolltemplate-comrolleon .userscript-tcat  {
+.sheet-rolltemplate-comrolleon .userscript-tcat,
+.sheet-rolltemplate-comrollpa .userscript-tcat   {
 	font-weight: bold;
 }
 
@@ -731,7 +735,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext td,
 .sheet-rolltemplate-comroll td,
 .sheet-rolltemplate-comroll20 td,
-.sheet-rolltemplate-comrolleon td {
+.sheet-rolltemplate-comrolleon td,
+.sheet-rolltemplate-comrollpa td {
 	padding: 5px 10px;
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
@@ -742,7 +747,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext tr:nth-child(odd),
 .sheet-rolltemplate-comroll tr:nth-child(odd),
 .sheet-rolltemplate-comroll20 tr:nth-child(odd),
-.sheet-rolltemplate-comrolleon tr:nth-child(odd) {
+.sheet-rolltemplate-comrolleon tr:nth-child(odd),
+.sheet-rolltemplate-comrollpa tr:nth-child(odd) {
 	background-color: rgb(242, 242, 242);
 }
 
@@ -751,7 +757,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-comtext tr:nth-child(even),
 .sheet-rolltemplate-comroll tr:nth-child(even),
 .sheet-rolltemplate-comroll20 tr:nth-child(even),
-.sheet-rolltemplate-comrolleon tr:nth-child(even) {
+.sheet-rolltemplate-comrolleon tr:nth-child(even),
+.sheet-rolltemplate-comrollpa tr:nth-child(even) {
 	background-color: rgb(229, 229, 229);
 }
 
@@ -759,7 +766,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-com20 .inlinerollresult,
 .sheet-rolltemplate-comroll .inlinerollresult,
 .sheet-rolltemplate-comroll20 .inlinerollresult,
-.sheet-rolltemplate-comrolleon .inlinerollresult    {
+.sheet-rolltemplate-comrolleon .inlinerollresult,
+.sheet-rolltemplate-comrollpa .inlinerollresult    {
 	display: inline-block;
 	min-width: 1.5em;
 	text-align: center;
@@ -770,7 +778,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-com20 .inlinerollresult.fullcrit,
 .sheet-rolltemplate-comroll .inlinerollresult.fullcrit,
 .sheet-rolltemplate-comroll20 .inlinerollresult.fullcrit,
-.sheet-rolltemplate-comrolleon .inlinerollresult.fullcrit  {
+.sheet-rolltemplate-comrolleon .inlinerollresult.fullcrit,
+.sheet-rolltemplate-comrollpa .inlinerollresult.fullcrit  {
 	border: 2px solid #3FB315;
 }
 
@@ -778,7 +787,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-com20 .inlinerollresult.fullfail,
 .sheet-rolltemplate-comroll .inlinerollresult.fullfail,
 .sheet-rolltemplate-comroll20 .inlinerollresult.fullfail,
-.sheet-rolltemplate-comrolleon .inlinerollresult.fullfail   {
+.sheet-rolltemplate-comrolleon .inlinerollresult.fullfail,
+.sheet-rolltemplate-comrollpa .inlinerollresult.fullfail   {
 	border: 2px solid #B31515;
 }
 
@@ -786,7 +796,8 @@ h2.sheet-middle-title{
 .sheet-rolltemplate-com20 .inlinerollresult.importantroll,
 .sheet-rolltemplate-comroll .inlinerollresult.importantroll,
 .sheet-rolltemplate-comroll20 .inlinerollresult.importantroll,
-.sheet-rolltemplate-comrolleon .inlinerollresult.importantroll   {
+.sheet-rolltemplate-comrolleon .inlinerollresult.importantroll,
+.sheet-rolltemplate-comrollpa .inlinerollresult.importantroll   {
 	border: 2px solid #4A57ED;
 }
 
@@ -881,26 +892,6 @@ h2.sheet-middle-title{
 
 }
 
-.sheet-pilotmoves button[type=roll].daring,
-.sheet-pilotmoves button[type=action].daring {
-	background-color: rgb(245, 239, 73);
-}
-
-.sheet-pilotmoves button[type=roll].calm,
-.sheet-pilotmoves button[type=action].calm {
-	background-color: rgb(133, 222, 219);
-}
-
-.sheet-pilotmoves button[type=roll].hard,
-.sheet-pilotmoves button[type=action].hard {
-	background-color: rgb(235, 113, 11);
-}
-
-.sheet-pilotmoves button[type=roll].keen,
-.sheet-pilotmoves button[type=action].keen {
-	background-color: rgb(121, 219, 107);
-}
-
 .sheet-pilotmoves button[type=roll].sheet-rollbuttonlong,
 .sheet-pilotmoves button[type=action].sheet-rollbuttonlong {
 	
@@ -955,6 +946,25 @@ input.sheet-radio-roll-state[value="disadvantage"] ~ button.advantage   {
     display: none;
 }
 
+.sheet-pilotmoves button[type=roll].daring,
+.sheet-pilotmoves button[type=action].daring {
+	background-color: rgb(245, 239, 73);
+}
+
+.sheet-pilotmoves button[type=roll].calm,
+.sheet-pilotmoves button[type=action].calm {
+	background-color: rgb(133, 222, 219);
+}
+
+.sheet-pilotmoves button[type=roll].hard,
+.sheet-pilotmoves button[type=action].hard {
+	background-color: rgb(245, 35, 20);
+}
+
+.sheet-pilotmoves button[type=roll].keen,
+.sheet-pilotmoves button[type=action].keen {
+	background-color: rgb(121, 219, 107);
+}
 
 
 
