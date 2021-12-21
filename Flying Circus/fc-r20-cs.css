@@ -473,6 +473,39 @@ input[type="radio"].tab:checked + label{
   grid-template-rows: 30px;
 }
 
+.stressboxesblackbacking {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 31px 31px 31px 31px 31px 31px;
+  grid-template-rows: 30px;
+  position: absolute;
+  left: 482px; top: 300px;
+  background-color: rgb(230, 204, 208);
+  z-index = 5;
+}
+
+.stressboxestenbacking {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 31px;
+  grid-template-rows: 30px;
+  position: absolute;
+  left: 636px; top: 300px;
+  background-color: rgb(212, 97, 115);
+  z-index = 6;
+}
+
+.injuryboxesblackbacking {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: 31px 31px 31px;
+  grid-template-rows: 30px;
+  position: absolute;
+  left: 420px; top: 266px;
+  background-color: rgb(230, 204, 208);
+  z-index = 5;
+}
+
 .injuryboxes .radiobox,
 .viceboxes .radiobox,
 .masteryboxes .radiobox,
@@ -487,6 +520,7 @@ input[type="radio"].tab:checked + label{
   cursor: pointer;
   z-index: 1;
   margin-top: 2px;
+  /*position: relative;*/
 }
 
 .injuryboxes .radiobox:checked,

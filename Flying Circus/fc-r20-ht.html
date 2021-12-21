@@ -112,6 +112,10 @@
 
 		</div>
 		
+		<!-- Adding some backgrounds to the circles -->	
+		<div class='injuryboxesblackbacking'>
+		
+		</div>
 		
 		<!-- Plane line -->	
 		<div class='sheet-planeline'>
@@ -153,6 +157,14 @@
 		<!-- Spacing fix -->
 
 		<div class="col" style="width: 100%; height: 4px;"></div>
+		
+		<!-- Adding some backgrounds to the circles -->	
+		<div class='stressboxesblackbacking'>
+		
+		</div>
+		<div class='stressboxestenbacking'>
+		
+		</div>
 		
 		<!-- Stress line -->	
 		<div class='sheet-stressline'>
@@ -217,7 +229,6 @@
 			<button type="roll" name="roll_seizetheinitiative" value='&{template:com20} {{char=@{character_name}}} {{move=Seize the Initiative}} {{showroll=[[1]]}} {{check=[[2d10 + @{daring}  + @{roll_mod} - @{injury}}]]}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}' class="sheet-rollbutton flat daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage." > Seize the Initiative </button>
 			<button type='action' name='act_dis20seizetheinitiative' class="sheet-rollbutton disadvantage daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage.">Seize the Initiative</button>
 			
-			<!-- Personal Attack - add here -->
 			<button type='action' name='act_advpersonalattackoffensive' class="sheet-rollbuttonlong advantage hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
 			<button type='action' name='act_personalattackoffensive' class="sheet-rollbuttonlong flat hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
 			<button type='action' name='act_dispersonalattackoffensive' class="sheet-rollbuttonlong disadvantage hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
