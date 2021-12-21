@@ -218,11 +218,15 @@
 			<button type='action' name='act_dis20seizetheinitiative' class="sheet-rollbutton disadvantage daring" title="When you encounter the enemy on foot, take 1 Stress and roll. If you are ambushing or defending a prepared position, take Advantage.">Seize the Initiative</button>
 			
 			<!-- Personal Attack - add here -->
+			<button type='action' name='act_advpersonalattackoffensive' class="sheet-rollbuttonlong advantage hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
 			<button type='action' name='act_personalattackoffensive' class="sheet-rollbuttonlong flat hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
+			<button type='action' name='act_dispersonalattackoffensive' class="sheet-rollbuttonlong disadvantage hard" title="When a PC attacks with a personal weapon">Personal Attack - Offensive</button>
 			
 			<span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <label class="sheet-big-label" > Hits </label> <input name="attr_hitspersonal" class="sheet-stat-inputs" type="number" value="0" /> </span>
 			
+			<button type='action' name='act_advpersonalattackdefensive' class="sheet-rollbuttonlong advantage keen" title="When a PC is attacked">Personal Attack - Defensive</button>
 			<button type='action' name='act_personalattackdefensive' class="sheet-rollbuttonlong flat keen" title="When a PC is attacked">Personal Attack - Defensive</button>
+			<button type='action' name='act_dispersonalattackdefensive' class="sheet-rollbuttonlong disadvantage keen" title="When a PC is attacked">Personal Attack - Defensive</button>
 			
 			<h2 class="sheet-middle-title" > Stress Release </h2>
 			
@@ -1111,7 +1115,7 @@
 		{{/crits}}
 		{{#natones}}
 		<tr>
-            <td><span>Natural 1s: </span>{{computed::natones}}</td>
+            <td><span>Natural Ones: </span>{{computed::natones}}</td>
         </tr>
 		{{/natones}}
 		
@@ -1897,7 +1901,408 @@ on('clicked:endofnight',initiateRolleon);
 };
 	
 on('clicked:personalattackoffensive',initiateRollpaoffensive);
- 
+
+//Personal Attack - Offensive - advantage roll
+
+  const initiateRollpaoffensiveadv = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Offensive}} {{infodesc=@{personalattackoffensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{droppeddie=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}}  {{roll11=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10,11].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","hard","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let hard = parseInt(values.hard)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = hard - injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  
+	  var min1 = Math.min.apply(null, slicedArray); // get the min of the array
+	  console.log("Min die");
+	  console.log(min1);
+	  slicedArray.splice(slicedArray.indexOf(min1), 1); // remove min from the array
+	  computeObj.droppeddie = min1;
+	  
+	  var min1 = Math.min.apply(null, slicedArrayAdjusted); // get the min of the array
+	  console.log("Min die");
+	  console.log(min1);
+	  slicedArrayAdjusted.splice(slicedArrayAdjusted.indexOf(min1), 1); // remove min from the array
+	  
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:advpersonalattackoffensive',initiateRollpaoffensiveadv);
+
+//Personal Attack - Offensive - disadvantage roll
+
+  const initiateRollpaoffensivedis = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Offensive}} {{infodesc=@{personalattackoffensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{droppeddie=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}}  {{roll11=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10,11].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","hard","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let hard = parseInt(values.hard)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = hard - injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  
+	  var max1 = Math.max.apply(null, slicedArray); // get the max of the array
+	  console.log("Max die");
+	  console.log(max1);
+	  slicedArray.splice(slicedArray.indexOf(max1), 1); // remove max from the array
+	  computeObj.droppeddie = max1;
+	  
+	  var max1 = Math.max.apply(null, slicedArrayAdjusted); // get the max of the array
+	  console.log("Max die");
+	  console.log(max1);
+	  slicedArrayAdjusted.splice(slicedArrayAdjusted.indexOf(max1), 1); // remove max from the array
+	  
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:dispersonalattackoffensive',initiateRollpaoffensivedis);
+
+
+
+
+//Personal Attack - Defensive - flat roll
+
+  const initiateRollpadefensive = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Defensive}} {{infodesc=@{personalattackdefensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","keen","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let keen = parseInt(values.keen)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = -keen + injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:personalattackdefensive',initiateRollpadefensive);
+
+
+//Personal Attack - Defensive - advantage roll
+
+  const initiateRollpadefensiveadv = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Defensive}} {{infodesc=@{personalattackdefensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{droppeddie=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}}  {{roll11=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10,11].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","keen","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let keen = parseInt(values.keen)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = -keen + injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  
+	  var min1 = Math.min.apply(null, slicedArray); // get the min of the array
+	  console.log("Min die");
+	  console.log(min1);
+	  slicedArray.splice(slicedArray.indexOf(min1), 1); // remove min from the array
+	  computeObj.droppeddie = min1;
+	  
+	  var min1 = Math.min.apply(null, slicedArrayAdjusted); // get the min of the array
+	  console.log("Min die");
+	  console.log(min1);
+	  slicedArrayAdjusted.splice(slicedArrayAdjusted.indexOf(min1), 1); // remove min from the array
+	  
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:advpersonalattackdefensive',initiateRollpadefensiveadv);
+
+//Personal Attack - Defensive - disadvantage roll
+
+  const initiateRollpadefensivedis = async function(event){
+  
+  let [section,rowID,button] = parseClickTrigger(event.triggerName);//Returns an array with values of ['repeating_section','rowID','button name']
+    let message = `&{template:comrollpa} {{char=@{character_name}}} {{move=Personal Attack - Defensive}} {{infodesc=@{personalattackdefensivedesc}}} {{showroll=[[1]]}} {{check=[[0[computed result]]]}} {{raw=[[0[computed roll]]]}} {{modifier=[[0[computed roll]]]}} {{hitsregular=[[0[computed roll]]]}} {{hitsbetter=[[0[computed roll]]]}} {{crits=[[0[computed roll]]]}} {{natones=[[0[computed roll]]]}} {{droppeddie=[[0[computed roll]]]}} {{roll1=[[1d20]]}} {{roll2=[[1d20]]}} {{roll3=[[1d20]]}} {{roll4=[[1d20]]}} {{roll5=[[1d20]]}} {{roll6=[[1d20]]}} {{roll7=[[1d20]]}} {{roll8=[[1d20]]}} {{roll9=[[1d20]]}} {{roll10=[[1d20]]}}  {{roll11=[[1d20]]}} `;
+    let roll = await startRoll(message);
+    const computeObj = {};
+  
+  let rollResults = [1,2,3,4,5,6,7,8,9,10,11].map((num)=>roll.results[`roll${num}`]);
+  console.log("Original rolls");
+  console.log(rollResults);
+  let result = rollResults.map(a => a.result);
+  console.log("Original rolls - easier format");
+  console.log(result);
+  
+  // Get personal hits, to know how many d20s to use, plus fields that modify the roll
+  getAttrs(["hitspersonal","keen","injury","roll_mod"], function(values) {
+    let hitspersonal = parseInt(values.hitspersonal)||0;
+	let keen = parseInt(values.keen)||0;
+	let injury = parseInt(values.injury)||0;
+	let rollmod = parseInt(values.roll_mod)||0;
+	let modifier = -keen + injury + rollmod;
+	computeObj.modifier = modifier;
+	
+	let resultAdjusted = result.map(n => n + modifier);
+		
+	  console.log("Hit count");
+	  console.log(hitspersonal);
+	  console.log("Number of results to match hit count");
+	  const slicedArray = result.slice(0, hitspersonal);
+	  const slicedArrayAdjusted = resultAdjusted.slice(0, hitspersonal);
+	  
+	  var max1 = Math.max.apply(null, slicedArray); // get the max of the array
+	  console.log("Max die");
+	  console.log(max1);
+	  slicedArray.splice(slicedArray.indexOf(max1), 1); // remove max from the array
+	  computeObj.droppeddie = max1;
+	  
+	  var max1 = Math.max.apply(null, slicedArrayAdjusted); // get the max of the array
+	  console.log("Max die");
+	  console.log(max1);
+	  slicedArrayAdjusted.splice(slicedArrayAdjusted.indexOf(max1), 1); // remove max from the array
+	  
+	  console.log(slicedArray);
+	  computeObj.raw = slicedArray;
+	  computeObj.check = slicedArrayAdjusted;
+	  
+	  //Count hits
+	  console.log("16+ results");
+	  let resultsBetterHits = returnLarger(slicedArrayAdjusted, 15);
+	  	  
+	  console.log(resultsBetterHits);
+	  console.log(resultsBetterHits.length);
+	  computeObj.hitsbetter = resultsBetterHits.length;
+	  
+	  console.log("11-15 results");
+	  let resultsHits = returnLarger(slicedArrayAdjusted, 10);
+	  	  
+	  console.log(resultsHits);
+	  console.log(resultsHits.length - resultsBetterHits.length);
+	  computeObj.hitsregular = resultsHits.length;
+	  
+	  console.log("Crits");
+	  let resultsCrits = returnLarger(slicedArray, 19);
+	  computeObj.crits = resultsCrits.length;
+	  
+	  console.log("Nat Ones");
+	  let resultsNotOnes = returnLarger(slicedArray, 1);
+	  
+	  computeObj.natones = (slicedArray.length - resultsNotOnes.length);
+	  
+	  finishRoll(roll.rollId,computeObj);
+	
+	
+  });
+  
+  
+};
+	
+on('clicked:dispersonalattackdefensive',initiateRollpadefensivedis);
 	
 	
 </script>
