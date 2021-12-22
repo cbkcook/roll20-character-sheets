@@ -203,7 +203,7 @@
 		
 		<!-- Spacing fix -->
 
-		<div class="col" style="width: 635px; height: 4px;"></div>
+		<div class="col" style="width: 679px; height: 4px;"></div>
 		
 		<!-- Pilot Moves Column - different versions depending on advantage status -->	
 		<div class='sheet-pilotmoves'>
@@ -257,7 +257,7 @@
 			<h2 class="sheet-middle-title" > Other Ground Moves </h2>
 			
 			<button type='action' name='act_advpresstheissue' class="sheet-rollbutton advantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
-			<button type="roll" name="roll_presstheissue" value='&{template:com} {{char=@{character_name}}} {{move=Press the Issue}} {{showroll=[[1]]}} {{check=[[2d10 + ?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it (no roll),0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}}]]}} {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton flat" title="When you try to get somebody to do what you want and have leverage" > Press the Issue </button>
+			<button type="roll" name="roll_presstheissue" value='&{template:com} {{char=@{character_name}}} {{move=Press the Issue}} {{showroll=[[1]]}} {{check=[[2d10 + ?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it - no roll,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}}]]}} {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbutton flat" title="When you try to get somebody to do what you want and have leverage" > Press the Issue </button>
 			<button type='action' name='act_dispresstheissue' class="sheet-rollbutton disadvantage" title="When you try to get somebody to do what you want and have leverage">Press the Issue</button>
 			
 			<button type='action' name='act_advturnonthecharm' class="sheet-rollbutton daring advantage" title="When you entice an interested party, roll. If they aren’t inclined to be interested, the move has no effect.">Turn on the Charm</button>
@@ -283,18 +283,32 @@
 			
 			<button type="roll" name="roll_discoverbeauty" value='&{template:comtext} {{char=@{character_name}}} {{move=Discover Beauty}} {{movedescription=@{discoverbeauty}}}' class="sheet-rollbutton" title="Once per routine, when you witness beauty in the world" > Discover Beauty</button>
 			
-			
-			
-			
-			
-			
-			
-			
-			
 			<h2 class="sheet-middle-title" >  </h2>
 			
 		</div>
 		
+		<!-- Comrades and Vices section -->	
+		<div class='sheet-comradesvices'>
+			
+			<h2 class="sheet-middle-title" > Comrades </h2> <h2 class="sheet-middle-title" > Trust? </h2> <span> </span> <h2 class="sheet-middle-title" > Familiar Vices </h2>
+			
+			<input name="attr_comrade1" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust1" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice1" class="sheet-char-inputs-medium" type="text"/> 
+			
+			<input name="attr_comrade2" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust2" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice2" class="sheet-char-inputs-medium" type="text"/> 
+			
+			<input name="attr_comrade3" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust3" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice3" class="sheet-char-inputs-medium" type="text"/> 
+			
+			<input name="attr_comrade4" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust4" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice4" class="sheet-char-inputs-medium" type="text"/> 
+			
+			<input name="attr_comrade5" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust5" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice5" class="sheet-char-inputs-medium" type="text"/> 
+			
+			<input name="attr_comrade6" class="sheet-char-inputs-medium" type="text"/> <input name="attr_comradetrust6" class="sheet-trust-boxes" type="checkbox"/> <span> </span> <input name="attr_familiarvice6" class="sheet-char-inputs-medium" type="text"/> 
+
+		</div>
+		
+		<!-- Spacing fix -->
+
+		<div class="col" style="width: 679px; height: 4px;"></div>
 		
 		
 		
@@ -1320,8 +1334,8 @@ const rollContent = {
 	dis20seizetheinitiative:'{{rollmod=[[ @{daring} + @{roll_mod} - @{injury}]]}} {{move=Seize the Initiative}} {{statused=Daring}} {{best=@{seizetheinitiativebest}}} {{success=@{seizetheinitiativesuccess}}} {{partial=@{seizetheinitiativepartial}}} {{miss=@{seizetheinitiativemiss}}}',
 	advindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
 	disindulgeinviceunfamiliar:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Indulge in Vice - Unfamiliar}} {{statused=Daring}} {{success=@{indulgeinviceunfamiliarsuccess}}} {{infodesc=@{indulgeinviceunfamiliardesc}}} {{miss=@{indulgeinviceunfamiliarmiss}}}',
-	advpresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it (no roll),0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
-	dispresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it (no roll),0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	advpresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it - no roll,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
+	dispresstheissue:'{{rollmod=[[?{When you try to get somebody to do what you want…|with Money pay their price and they’ll do it - no roll,0|with intimidation or force roll +Hard,@{hard}|with honest reasoning roll +Calm,@{calm}|with lies or misdirection roll +Keen,@{keen}} + @{roll_mod} - @{injury}]]}} {{move=Press the Issue}}  {{success=@{presstheissuesuccess}}} {{partial=@{presstheissuepartial}}} {{miss=@{genericmiss}}}',
 	advturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}',
 	disturnonthecharm:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Turn on the Charm}} {{statused=Daring}} {{success=@{turnonthecharmsuccess}}} {{partial=@{turnonthecharmpartial}}} {{miss=@{genericmiss}}}',
 	advgetreal:'{{rollmod=[[@{calm} + @{roll_mod} - @{injury}]]}} {{move=Get Real}} {{statused=Calm}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}',

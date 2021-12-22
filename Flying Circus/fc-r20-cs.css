@@ -343,7 +343,7 @@ input[type="radio"].tab:checked + label{
 					  "hometownline   hometownline  hometownline"
 					  "planeline   planeline   planeline"
 					  "stressline   stressline   pilotmoves"
-					  "armor    armor   pilotmoves"
+					  "comradesvices    comradesvices   pilotmoves"
 					  "items    items   pilotmoves"
 					  "contacts   contacts   pilotmoves"
 					  "bonecharms  bonecharms   pilotmoves"
@@ -444,6 +444,16 @@ input[type="radio"].tab:checked + label{
 
 }
 
+.sheet-comradesvices {
+  grid-area: comradesvices;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 270px 70px 17px 250px;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
+
+}
 
 .injuryboxes {
   display: grid;
@@ -581,6 +591,15 @@ input.sheet-char-inputs{
 	font-size: 1.5em;
 }
 
+input.sheet-char-inputs-medium{
+	
+	font-family: 'Balthazar', serif;
+	display: inline;
+	height:30px;
+	width:270px;
+	font-size: 1.5em;
+}
+
 input.sheet-char-inputs-long{
 	
 	font-family: 'Balthazar', serif;
@@ -699,6 +718,18 @@ h2.sheet-middle-title{
     line-height: 30px;
     margin-bottom: 0px;
 
+	
+}
+
+input.sheet-trust-boxes {
+	
+	font-family: 'UnifrakturMaguntia', cursive;
+	margin: auto;
+	display: inline;
+	transform: scale(2.5);
+	height:35px;
+	width:35px;
+	filter: invert(00%) hue-rotate(110deg) brightness(.9);
 	
 }
 
