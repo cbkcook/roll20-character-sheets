@@ -344,12 +344,28 @@ input[type="radio"].tab:checked + label{
 					  "planeline   planeline   planeline"
 					  "stressline   stressline   pilotmoves"
 					  "comradesvices    comradesvices   pilotmoves"
-					  "items    items   pilotmoves"
+					  "playbookspecific    playbookspecific   pilotmoves"
 					  "contacts   contacts   pilotmoves"
 					  "bonecharms  bonecharms   pilotmoves"
 					  "mana    mana   pilotmoves"
 					  "powers    powers   pilotmoves"
 					  "notes   notes   pilotmoves";
+}
+
+
+
+.sheet-farmer {
+  grid-area: farmer;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove"
+					  "corepersonalmove";
+  
 }
 
 
@@ -395,7 +411,7 @@ input[type="radio"].tab:checked + label{
 .sheet-playsheettoggle[value="worker"] ~ div.sheet-worker,
 .sheet-playsheettoggle[value="student"] ~ div.sheet-student,
 .sheet-playsheettoggle[value="witch"] ~ div.sheet-witch {
-    display: grid;
+    display: block;
 }
 
 .sheet-nameline {
@@ -451,7 +467,18 @@ input[type="radio"].tab:checked + label{
   grid-template-columns: 270px 70px 17px 250px;
   display: grid;
   grid-gap: 4px;
-  grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
+  grid-template-rows: auto;
+
+}
+
+.sheet-triggersvents {
+  grid-area: triggersvents;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 270px 70px 17px 250px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
 
 }
 
@@ -573,6 +600,44 @@ label.sheet-left-label{
 	
 }
 
+label.sheet-left-label-small{
+	
+	font-family: 'Balthazar', serif;
+	color: black;
+	display: inline;
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 15px;
+    margin-bottom: 0px;
+	
+}
+
+label.sheet-middle-label-small{
+	
+	font-family: 'Balthazar', serif;
+	color: black;
+	display: inline;
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 15px;
+    margin-bottom: 0px;
+	text-align: center;
+	
+}
+
+label.sheet-middle-label{
+	
+	font-family: 'Balthazar', serif;
+	color: black;
+	display: inline;
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 30px;
+    margin-bottom: 0px;
+	text-align: center;
+	
+}
+
 select.sheet-select-inputs{
 	
 	font-family: 'Balthazar', serif;
@@ -595,9 +660,9 @@ input.sheet-char-inputs-medium{
 	
 	font-family: 'Balthazar', serif;
 	display: inline;
-	height:30px;
+	height:15px;
 	width:270px;
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 input.sheet-char-inputs-long{
@@ -726,11 +791,11 @@ input.sheet-trust-boxes {
 	font-family: 'UnifrakturMaguntia', cursive;
 	margin: auto;
 	display: inline;
-	transform: scale(2.5);
-	height:35px;
-	width:35px;
+	transform: scale(2);
+	height:15px;
+	width:15px;
 	filter: invert(00%) hue-rotate(110deg) brightness(.9);
-	
+	margin-bottom: 7px;
 }
 
 
