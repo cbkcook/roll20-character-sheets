@@ -353,9 +353,125 @@ input[type="radio"].tab:checked + label{
 }
 
 
+.sheet-fisher {
+  grid-area: fisher;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-witch {
+  grid-area: witch;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
 
 .sheet-farmer {
   grid-area: farmer;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-soldier {
+  grid-area: soldier;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-believer {
+  grid-area: believer;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-skyborn {
+  grid-area: skyborn;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-student {
+  grid-area: student;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-survivor {
+  grid-area: survivor;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-scion {
+  grid-area: scion;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 620px;
+  display: block;
+  grid-gap: 4px;
+  grid-template-rows:  minmax(min-content, max-content)    ;
+  grid-template-areas:"triggersvents"
+					  "intimacymove";
+  
+}
+
+.sheet-worker {
+  grid-area: worker;
   align-self: self-start;
   font-family: 'Balthazar', serif;
   grid-template-columns: 620px;
