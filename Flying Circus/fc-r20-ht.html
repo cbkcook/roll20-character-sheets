@@ -694,6 +694,38 @@
 			
 		</div>
 		
+		<div class="col" style="width: 679px; height: 8px;"></div>
+		
+		<!-- Personal Moves section -->	
+		
+		
+		<!-- Master Moves section -->	
+		<div class='sheet-masterymoves'>
+		
+			<span> <input type="hidden" name="attr_hidebushwackmastery" class="sheet-hide-bushwack-input" value="false" >
+			<button type="action" name="act_hidebushwackmastery_true" class="sheet-hide-bushwack-input sheet-bushwack-hide-button button-hide" > </button>
+			<button type="action" name="act_hidebushwackmastery_false" class="sheet-hide-bushwack-input sheet-bushwack-reveal-button button-reveal" > </button> 
+			&nbsp; &nbsp; <h2 class="sheet-left-title" > Bushwack Mastery </h2> 
+			
+			<div class='sheet-bushwackmastery'> 
+				
+				<label class="sheet-left-label-small"><i>Victories:</i> Aircraft or balloons shot down.</label> 
+				
+				<label class="sheet-left-label-small"><i>Passive:</i> Each move taken past the first gives a flat +2 Damage at all ranges when you Open Fire.</label> 
+				
+				
+			</div>
+			
+			</span>
+			
+			
+			
+			
+		</div>
+		
+		<div class="col" style="width: 679px; height: 8px;"></div>
+		
+		
 		
 		
 		
@@ -1775,6 +1807,11 @@ let returnLarger = (arr, num) => {
     on(`clicked:hideresetstats_${value}`, function() {
       setAttrs({
         ["hideresetstats"]: value
+      });
+    });
+	on(`clicked:hidebushwackmastery_${value}`, function() {
+      setAttrs({
+        ["hidebushwackmastery"]: value
       });
     });
   });

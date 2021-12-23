@@ -345,8 +345,8 @@ input[type="radio"].tab:checked + label{
 					  "stressline   stressline   pilotmoves"
 					  "comradesvices    comradesvices   pilotmoves"
 					  "playbookspecific    playbookspecific   pilotmoves"
-					  "contacts   contacts   pilotmoves"
-					  "bonecharms  bonecharms   pilotmoves"
+					  "personalmoves   personalmoves   pilotmoves"
+					  "masterymoves  masterymoves   pilotmoves"
 					  "mana    mana   pilotmoves"
 					  "powers    powers   pilotmoves"
 					  "notes   notes   pilotmoves";
@@ -599,6 +599,28 @@ input[type="radio"].tab:checked + label{
 
 .sheet-intimacymove {
   grid-area: intimacymove;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 642px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
+
+}
+
+.sheet-masterymoves {
+  grid-area: masterymoves;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 642px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
+
+}
+
+.sheet-bushwackmastery {
+  grid-area: bushwackmastery;
   align-self: self-start;
   font-family: 'Balthazar', serif;
   grid-template-columns: 642px;
@@ -884,6 +906,12 @@ button.button-reveal{
 input.sheet-hide-stats-input[value="false"] ~ button.sheet-stat-reveal-button,
 input.sheet-hide-stats-input[value="true"] ~ button.sheet-stat-hide-button,
 input.sheet-hide-stats-input[value="true"] ~ button.sheet-reset-stats {
+    display: none;
+}
+
+input.sheet-hide-bushwack-input[value="false"] ~ button.sheet-bushwack-reveal-button,
+input.sheet-hide-bushwack-input[value="true"] ~ button.sheet-bushwack-hide-button,
+input.sheet-hide-bushwack-input[value="true"] ~ div.sheet-bushwackmastery {
     display: none;
 }
 
