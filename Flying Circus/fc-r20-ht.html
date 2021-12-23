@@ -701,17 +701,36 @@
 		
 		<!-- Master Moves section -->	
 		<div class='sheet-masterymoves'>
-		
+			
+			<!-- Bushwack Mastery -->
 			<span> <input type="hidden" name="attr_hidebushwackmastery" class="sheet-hide-bushwack-input" value="false" >
 			<button type="action" name="act_hidebushwackmastery_true" class="sheet-hide-bushwack-input sheet-bushwack-hide-button button-hide" > </button>
 			<button type="action" name="act_hidebushwackmastery_false" class="sheet-hide-bushwack-input sheet-bushwack-reveal-button button-reveal" > </button> 
-			&nbsp; &nbsp; <h2 class="sheet-left-title" > Bushwack Mastery </h2> 
+			&nbsp; &nbsp; <h2 class="sheet-left-title" > Bushwack Mastery </h2>  &nbsp; &nbsp;
+			
+			<input type="hidden" name="attr_hidebushwackmasteryunchecked" class="sheet-hide-bushwackunchecked-input" value="false" >
+			<button type="action" name="act_hidebushwackmasteryunchecked_true" class="sheet-hide-bushwackunchecked-input sheet-bushwackunchecked-hide-button button-hide" > </button>
+			<button type="action" name="act_hidebushwackmasteryunchecked_false" class="sheet-hide-bushwackunchecked-input sheet-bushwackunchecked-reveal-button button-reveal" > </button> 
 			
 			<div class='sheet-bushwackmastery'> 
 				
 				<label class="sheet-left-label-small"><i>Victories:</i> Aircraft or balloons shot down.</label> 
 				
 				<label class="sheet-left-label-small"><i>Passive:</i> Each move taken past the first gives a flat +2 Damage at all ranges when you Open Fire.</label> 
+				
+				<div class="col" style="width: 679px; height: 4px;"></div>
+				
+				<input type="hidden" name="attr_hidebushwackmasteryunchecked" class="sheet-hide-bushwackunchecked-input" value="false" >
+				
+				<div class="bushwackunchecked"><input name="attr_bushwackmastery_1" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Ambush Predator:</b> <i>When you attack an aircraft which doesn’t know you are there,</i> inflict double damage.</label> </div>
+				
+				<div class="bushwackunchecked"><input name="attr_bushwackmastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Vanishing Act:</b> <i> When you attack an enemy from above, </i> take 1 RPM to make the enemy lose track of you afterward. This would allow Ambush Predator to be activated again.</label> </div>
+				
+				<div class="bushwackunchecked"><input name="attr_bushwackmastery_3" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Overdrive:</b> <i> When you Open Fire while travelling faster than your Max Speed, </i> shift your Effective Range one band closer.</label> </div>
+				
+				<div class="bushwackunchecked"><input name="attr_bushwackmastery_4" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Boom & Zoom:</b> Count your G-Force as one lower for pilot penalties, and reduce your Energy Loss by 1 (minimum 1).</label> </div>
+				
+				<div class="bushwackunchecked"><input name="attr_bushwackmastery_5" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Vulture:</b> <i> When you attack a target below half Structure, </i> activate Ambush Predator (even if you don’t have the move).</label> </div>
 				
 				
 			</div>
@@ -1803,7 +1822,7 @@ let returnLarger = (arr, num) => {
   });
   
   const statHideValues = ["true","false"];
-  statHideValues.forEach(function(value) {
+	statHideValues.forEach(function(value) {
     on(`clicked:hideresetstats_${value}`, function() {
       setAttrs({
         ["hideresetstats"]: value
@@ -1814,7 +1833,15 @@ let returnLarger = (arr, num) => {
         ["hidebushwackmastery"]: value
       });
     });
-  });
+	on(`clicked:hidebushwackmasteryunchecked_${value}`, function() {
+      setAttrs({
+        ["hidebushwackmasteryunchecked"]: value
+      });
+    });
+	
+	});
+  
+  
   
   //Reset Stats to starting stats for selected stat package (by playbook)
 	const attributes = ["statpackage","hard","keen","calm","daring","wild"];

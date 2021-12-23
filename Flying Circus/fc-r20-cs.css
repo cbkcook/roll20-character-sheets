@@ -915,6 +915,14 @@ input.sheet-hide-bushwack-input[value="true"] ~ div.sheet-bushwackmastery {
     display: none;
 }
 
+input.sheet-hide-bushwackunchecked-input[value="false"] ~ button.sheet-bushwackunchecked-reveal-button,
+input.sheet-hide-bushwackunchecked-input[value="true"] ~ button.sheet-bushwackunchecked-hide-button,
+input.sheet-hide-bushwackunchecked-input[value="true"] ~ div.bushwackunchecked > input:not(:checked),
+input.sheet-hide-bushwackunchecked-input[value="true"] ~ div.bushwackunchecked > input:not(:checked) + label
+ {
+    display: none;
+}
+
 .sheet-planeline input[type=number].sheet-stat-inputs{
 	
 	font-family: 'Balthazar', serif;
@@ -965,7 +973,17 @@ input.sheet-trust-boxes {
 	margin-bottom: 7px;
 }
 
-
+input.sheet-used-boxes {
+	
+	font-family: 'UnifrakturMaguntia', cursive;
+	margin: auto;
+	display: inline;
+	transform: scale(1);
+	height:15px;
+	width:15px;
+	filter: invert(00%) hue-rotate(110deg) brightness(.9);
+	margin-bottom: 7px;
+}
 
 
 
