@@ -630,6 +630,39 @@ input[type="radio"].tab:checked + label{
 
 }
 
+.sheet-slipstreammastery {
+  grid-area: slipstreammastery;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 642px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
+
+}
+
+.sheet-dogfightermastery {
+  grid-area: dogfightermastery;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 642px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
+
+}
+
+.sheet-sharpshootermastery {
+  grid-area: sharpshootermastery;
+  align-self: self-start;
+  font-family: 'Balthazar', serif;
+  grid-template-columns: 642px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-rows: auto;
+
+}
+
 .injuryboxes {
   display: grid;
   grid-gap: 0px;
@@ -922,6 +955,49 @@ input.sheet-hide-bushwackunchecked-input[value="true"] ~ div.bushwackunchecked >
  {
     display: none;
 }
+
+input.sheet-hide-slipstream-input[value="false"] ~ button.sheet-slipstream-reveal-button,
+input.sheet-hide-slipstream-input[value="true"] ~ button.sheet-slipstream-hide-button,
+input.sheet-hide-slipstream-input[value="true"] ~ div.sheet-slipstreammastery {
+    display: none;
+}
+
+input.sheet-hide-slipstreamunchecked-input[value="false"] ~ button.sheet-slipstreamunchecked-reveal-button,
+input.sheet-hide-slipstreamunchecked-input[value="true"] ~ button.sheet-slipstreamunchecked-hide-button,
+input.sheet-hide-slipstreamunchecked-input[value="true"] ~ div.slipstreamunchecked > input:not(:checked),
+input.sheet-hide-slipstreamunchecked-input[value="true"] ~ div.slipstreamunchecked > input:not(:checked) + label
+ {
+    display: none;
+}
+
+input.sheet-hide-dogfighter-input[value="false"] ~ button.sheet-dogfighter-reveal-button,
+input.sheet-hide-dogfighter-input[value="true"] ~ button.sheet-dogfighter-hide-button,
+input.sheet-hide-dogfighter-input[value="true"] ~ div.sheet-dogfightermastery {
+    display: none;
+}
+
+input.sheet-hide-dogfighterunchecked-input[value="false"] ~ button.sheet-dogfighterunchecked-reveal-button,
+input.sheet-hide-dogfighterunchecked-input[value="true"] ~ button.sheet-dogfighterunchecked-hide-button,
+input.sheet-hide-dogfighterunchecked-input[value="true"] ~ div.dogfighterunchecked > input:not(:checked),
+input.sheet-hide-dogfighterunchecked-input[value="true"] ~ div.dogfighterunchecked > input:not(:checked) + label
+ {
+    display: none;
+}
+
+input.sheet-hide-sharpshooter-input[value="false"] ~ button.sheet-sharpshooter-reveal-button,
+input.sheet-hide-sharpshooter-input[value="true"] ~ button.sheet-sharpshooter-hide-button,
+input.sheet-hide-sharpshooter-input[value="true"] ~ div.sheet-sharpshootermastery {
+    display: none;
+}
+
+input.sheet-hide-sharpshooterunchecked-input[value="false"] ~ button.sheet-sharpshooterunchecked-reveal-button,
+input.sheet-hide-sharpshooterunchecked-input[value="true"] ~ button.sheet-sharpshooterunchecked-hide-button,
+input.sheet-hide-sharpshooterunchecked-input[value="true"] ~ div.sharpshooterunchecked > input:not(:checked),
+input.sheet-hide-sharpshooterunchecked-input[value="true"] ~ div.sharpshooterunchecked > input:not(:checked) + label
+ {
+    display: none;
+}
+
 
 .sheet-planeline input[type=number].sheet-stat-inputs{
 	

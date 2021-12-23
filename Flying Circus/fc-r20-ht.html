@@ -694,13 +694,14 @@
 			
 		</div>
 		
-		<div class="col" style="width: 679px; height: 8px;"></div>
 		
 		<!-- Personal Moves section -->	
 		
 		
 		<!-- Master Moves section -->	
 		<div class='sheet-masterymoves'>
+			
+			<div class="col" style="width: 679px; height: 8px;"></div>
 			
 			<!-- Bushwack Mastery -->
 			<span> <input type="hidden" name="attr_hidebushwackmastery" class="sheet-hide-bushwack-input" value="false" >
@@ -714,9 +715,9 @@
 			
 			<div class='sheet-bushwackmastery'> 
 				
-				<label class="sheet-left-label-small"><i>Victories:</i> Aircraft or balloons shot down.</label> 
+				<label class="sheet-left-label-small"><u>Victories:</u> <i> Aircraft or balloons shot down. </i></label> 
 				
-				<label class="sheet-left-label-small"><i>Passive:</i> Each move taken past the first gives a flat +2 Damage at all ranges when you Open Fire.</label> 
+				<label class="sheet-left-label-small"><u>Passive:</u> <i> Each move taken past the first gives a flat +2 Damage at all ranges when you Open Fire. </i></label> 
 				
 				<div class="col" style="width: 679px; height: 4px;"></div>
 				
@@ -732,12 +733,117 @@
 				
 				<div class="bushwackunchecked"><input name="attr_bushwackmastery_5" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Vulture:</b> <i> When you attack a target below half Structure, </i> activate Ambush Predator (even if you don’t have the move).</label> </div>
 				
+			</div>
+			
+			</span>
+			
+			<div class="col" style="width: 679px; height: 8px;"></div>
+			
+			<!-- Slipstream Mastery -->
+			<span> <input type="hidden" name="attr_hideslipstreammastery" class="sheet-hide-slipstream-input" value="false" >
+			<button type="action" name="act_hideslipstreammastery_true" class="sheet-hide-slipstream-input sheet-slipstream-hide-button button-hide" > </button>
+			<button type="action" name="act_hideslipstreammastery_false" class="sheet-hide-slipstream-input sheet-slipstream-reveal-button button-reveal" > </button> 
+			&nbsp; &nbsp; <h2 class="sheet-left-title" > Slipstream Mastery </h2>  &nbsp; &nbsp;
+			
+			<input type="hidden" name="attr_hideslipstreammasteryunchecked" class="sheet-hide-slipstreamunchecked-input" value="false" >
+			<button type="action" name="act_hideslipstreammasteryunchecked_true" class="sheet-hide-slipstreamunchecked-input sheet-slipstreamunchecked-hide-button button-hide" > </button>
+			<button type="action" name="act_hideslipstreammasteryunchecked_false" class="sheet-hide-slipstreamunchecked-input sheet-slipstreamunchecked-reveal-button button-reveal" > </button> 
+			
+			<div class='sheet-slipstreammastery'> 
+				
+				<label class="sheet-left-label-small"><u>Victories:</u> <i> Aircraft shot down, crashed, or lured to their destruction. </i></label> 
+				
+				<label class="sheet-left-label-small"><u>Passive:</u> <i> Each move taken past the first adds +2 Hits (for the purposes of Crits only) when you Open Fire. </i></label> 
+				
+				<div class="col" style="width: 679px; height: 4px;"></div>
+				
+				<input type="hidden" name="attr_hideslipstreammasteryunchecked" class="sheet-hide-slipstreamunchecked-input" value="false" >
+				
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_1" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Tables Have Turned:</b> <i>If you are being chased or get behind your attacker,</i> the next person to attack your pursuer (including yourself) may use their best stat to Open Fire against them.</label> </div>
+				
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Dangerous Merge:</b> <i> If you go head-on with a foe while trailing a pursuer, </i> <u> roll +Daring. </u> </label> </div>
+				
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_3" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Headache Spin:</b> <i> When you deliberately induce a spin while being chased, </i> roll to Recover as usual. Your enemy will believe you have been shot down, and you will take Advantage forward against them.</label> </div>
+				
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_4" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Welcome to Earth:</b> <i> When you dive to ground level to escape a plane on your six, </i> on a 16+, your pursuer ploughs into the ground.</label> </div>
+				
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_5" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Slippery Customer:</b> You may roll Dogfight to escape any aircraft attacking you before you Take Fire, even if you would normally just Take Fire, so long as you aren’t rolling two Dogfights in a row. </label> </div>
 				
 			</div>
 			
 			</span>
 			
+			<div class="col" style="width: 679px; height: 8px;"></div>
 			
+			<!-- Dogfighter Mastery -->
+			<span> <input type="hidden" name="attr_hidedogfightermastery" class="sheet-hide-dogfighter-input" value="false" >
+			<button type="action" name="act_hidedogfightermastery_true" class="sheet-hide-dogfighter-input sheet-dogfighter-hide-button button-hide" > </button>
+			<button type="action" name="act_hidedogfightermastery_false" class="sheet-hide-dogfighter-input sheet-dogfighter-reveal-button button-reveal" > </button> 
+			&nbsp; &nbsp; <h2 class="sheet-left-title" > Dogfighter Mastery </h2>  &nbsp; &nbsp;
+			
+			<input type="hidden" name="attr_hidedogfightermasteryunchecked" class="sheet-hide-dogfighterunchecked-input" value="false" >
+			<button type="action" name="act_hidedogfightermasteryunchecked_true" class="sheet-hide-dogfighterunchecked-input sheet-dogfighterunchecked-hide-button button-hide" > </button>
+			<button type="action" name="act_hidedogfightermasteryunchecked_false" class="sheet-hide-dogfighterunchecked-input sheet-dogfighterunchecked-reveal-button button-reveal" > </button> 
+			
+			<div class='sheet-dogfightermastery'> 
+				
+				<label class="sheet-left-label-small"><u>Victories:</u> <i> Aircraft shot down, pilots surrendered, or probable kills. </i></label> 
+				
+				<label class="sheet-left-label-small"><u>Passive:</u> <i> Each move taken past the first adds a flat +4 Damage when you Open Fire at an Absolute Range of Knife. </i></label> 
+				
+				<div class="col" style="width: 679px; height: 4px;"></div>
+				
+				<input type="hidden" name="attr_hidedogfightermasteryunchecked" class="sheet-hide-dogfighterunchecked-input" value="false" >
+				
+				<div class="dogfighterunchecked"><input name="attr_dogfightermastery_1" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Riding the Edge:</b> Your plane counts as having +5 Handling, and you lose 1 fewer Speed overall when you Commit to the Turn (minimum 0).</label> </div>
+				
+				<div class="dogfighterunchecked"><input name="attr_dogfightermastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Head to Head:</b> <i> When you would be shot at from behind, </i> you can spend Speed equal to Turn Bleed to instead transition directly into a knife-range head-on attack, and take +3 forward to Open Fire.</label> </div>
+				
+				<div class="dogfighterunchecked"><input name="attr_dogfightermastery_3" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Nerves of Steel:</b> <i> When you attack at an absolute range of Knife, </i> you can reroll your attack move if you don’t like the result. Second results stand.</label> </div>
+				
+				<div class="dogfighterunchecked"><input name="attr_dogfightermastery_4" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Belly Scrape:</b> <i> When you fly at ground level, </i> gain a +10 Handling and +1 to Evade Danger.</label> </div>
+				
+				<div class="dogfighterunchecked"><input name="attr_dogfightermastery_5" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Switch Weave:</b> <i> When you escort a formation, </i> you provide Overwatch to all members, not just one.</label> </div>
+				
+			</div>
+			
+			</span>
+			
+			<div class="col" style="width: 679px; height: 8px;"></div>
+			
+			<!-- Sharpshooter Mastery -->
+			<span> <input type="hidden" name="attr_hidesharpshootermastery" class="sheet-hide-sharpshooter-input" value="false" >
+			<button type="action" name="act_hidesharpshootermastery_true" class="sheet-hide-sharpshooter-input sheet-sharpshooter-hide-button button-hide" > </button>
+			<button type="action" name="act_hidesharpshootermastery_false" class="sheet-hide-sharpshooter-input sheet-sharpshooter-reveal-button button-reveal" > </button> 
+			&nbsp; &nbsp; <h2 class="sheet-left-title" > Sharpshooter Mastery </h2>  &nbsp; &nbsp;
+			
+			<input type="hidden" name="attr_hidesharpshootermasteryunchecked" class="sheet-hide-sharpshooterunchecked-input" value="false" >
+			<button type="action" name="act_hidesharpshootermasteryunchecked_true" class="sheet-hide-sharpshooterunchecked-input sheet-sharpshooterunchecked-hide-button button-hide" > </button>
+			<button type="action" name="act_hidesharpshootermasteryunchecked_false" class="sheet-hide-sharpshooterunchecked-input sheet-sharpshooterunchecked-reveal-button button-reveal" > </button> 
+			
+			<div class='sheet-sharpshootermastery'> 
+				
+				<label class="sheet-left-label-small"><u>Victories:</u> <i> Aircraft or balloons shot down, or probable kills. </i></label> 
+				
+				<label class="sheet-left-label-small"><u>Passive:</u> <i> Each move taken past the first adds a flat +4 Damage when you Open Fire at an Absolute Range of Long, and +2 Damage at an Absolute Range of Extreme, providing you hit at all. </i></label> 
+				
+				<div class="col" style="width: 679px; height: 4px;"></div>
+				
+				<input type="hidden" name="attr_hidesharpshootermasteryunchecked" class="sheet-hide-sharpshooterunchecked-input" value="false" >
+				
+				<div class="sharpshooterunchecked"><input name="attr_sharpshootermastery_1" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Metal or Meat:</b> <i>When you Draw a Bead,</i> the Open Fire +Calm result can be taken for free, in addition to other results you qualify for.</label> </div>
+				
+				<div class="sharpshooterunchecked"><input name="attr_sharpshootermastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Concentrated Shooting:</b> <i> When you Draw a Bead, </i> take +1 results.</label> </div>
+				
+				<div class="sharpshooterunchecked"><input name="attr_sharpshootermastery_3" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Tracer Dance:</b> <i> When you fire on an enemy during a chase, </i> spend 1 ammo. The enemy is forced to turn, and you immediately win the chase.</label> </div>
+				
+				<div class="sharpshooterunchecked"><input name="attr_sharpshootermastery_4" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Lead the Target:</b> Ignore the Deflection Shot penalty (but not Awkward).</label> </div>
+				
+				<div class="sharpshooterunchecked"><input name="attr_sharpshootermastery_5" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Lucky Shot:</b> <i> When attacking at an absolute range of Long or Extreme, roll +1 Crit Die.</label> </div>
+				
+			</div>
+			
+			</span>
 			
 			
 		</div>
@@ -1828,6 +1934,7 @@ let returnLarger = (arr, num) => {
         ["hideresetstats"]: value
       });
     });
+	
 	on(`clicked:hidebushwackmastery_${value}`, function() {
       setAttrs({
         ["hidebushwackmastery"]: value
@@ -1836,6 +1943,39 @@ let returnLarger = (arr, num) => {
 	on(`clicked:hidebushwackmasteryunchecked_${value}`, function() {
       setAttrs({
         ["hidebushwackmasteryunchecked"]: value
+      });
+    });
+	
+	on(`clicked:hideslipstreammastery_${value}`, function() {
+      setAttrs({
+        ["hideslipstreammastery"]: value
+      });
+    });
+	on(`clicked:hideslipstreammasteryunchecked_${value}`, function() {
+      setAttrs({
+        ["hideslipstreammasteryunchecked"]: value
+      });
+    });
+	
+	on(`clicked:hidedogfightermastery_${value}`, function() {
+      setAttrs({
+        ["hidedogfightermastery"]: value
+      });
+    });
+	on(`clicked:hidedogfightermasteryunchecked_${value}`, function() {
+      setAttrs({
+        ["hidedogfightermasteryunchecked"]: value
+      });
+    });
+	
+	on(`clicked:hidesharpshootermastery_${value}`, function() {
+      setAttrs({
+        ["hidesharpshootermastery"]: value
+      });
+    });
+	on(`clicked:hidesharpshootermasteryunchecked_${value}`, function() {
+      setAttrs({
+        ["hidesharpshootermasteryunchecked"]: value
       });
     });
 	
