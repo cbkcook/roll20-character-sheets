@@ -1211,40 +1211,40 @@ input.sheet-used-boxes {
 
 }
 
-.sheet-american-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-explorer-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-factotum-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-mother-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-orphan-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-undeniable-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-vessel-moves button[type=roll].sheet-rollbuttond6::before,
-.sheet-undeniable button[type=roll].sheet-rollbuttond6::before   {
-    font-family: "dicefontd6";
-    content: "F";
+
+.slipstreamunchecked button[type=roll].sheet-rollbuttond10::before,
+.slipstreamunchecked button[type=action].sheet-rollbuttond10::before   {
+    font-family: "dicefontd10";
+    content: "k";
     font-size: 1em;
 
 }
 
-.sheet-american-moves button[type=roll].sheet-rollbuttond6,
-.sheet-explorer-moves button[type=roll].sheet-rollbuttond6,
-.sheet-factotum-moves button[type=roll].sheet-rollbuttond6,
-.sheet-mother-moves button[type=roll].sheet-rollbuttond6,
-.sheet-orphan-moves button[type=roll].sheet-rollbuttond6,
-.sheet-undeniable-moves button[type=roll].sheet-rollbuttond6,
-.sheet-vessel-moves button[type=roll].sheet-rollbuttond6,
-.sheet-undeniable button[type=roll].sheet-rollbuttond6  {
-	background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/The%20Between/moroccan-background.PNG?raw=true"); /*Pattern generated with css, but due to security errors coming up, used as a picture here.*/
-	background-repeat: repeat;
-	background-size: 70px;
+.slipstreamunchecked button[type=roll].sheet-rollbuttond10,
+.slipstreamunchecked button[type=action].sheet-rollbuttond10  {
+	background-color: rgb(235, 237, 235);
+	background-image: none;
 	color: black;
-	width: 18px;
-	height: 18px;
+	width: 15px;
+	height: 15px;
+	font-size: 18px;
 	border-style: none;
 	margin: auto;
 	border-radius: 5px;
 	white-space: normal;
-
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	white-space: normal;
+	vertical-align: middle;
+    border-width: 0px;
+	/*display: inline-block;*/
+	border: 0px;
+	text-shadow: none;
+	text-align: center;
 }
+
 
 .sheet-pilotmoves button[type=roll].sheet-rollbutton,
 .sheet-pilotmoves button[type=action].sheet-rollbutton {
@@ -1338,7 +1338,9 @@ input.sheet-radio-roll-state[value="disadvantage"] ~ button.advantage   {
 }
 
 .sheet-pilotmoves button[type=roll].daring,
-.sheet-pilotmoves button[type=action].daring {
+.sheet-pilotmoves button[type=action].daring,
+.slipstreamunchecked button[type=roll].daring,
+.slipstreamunchecked button[type=action].daring {
 	background-color: rgb(245, 239, 73);
 }
 

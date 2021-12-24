@@ -761,7 +761,9 @@
 				
 				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_1" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Tables Have Turned:</b> <i>If you are being chased or get behind your attacker,</i> the next person to attack your pursuer (including yourself) may use their best stat to Open Fire against them.</label> </div>
 				
-				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Dangerous Merge:</b> <i> If you go head-on with a foe while trailing a pursuer, </i> <u> roll +Daring. </u> </label> </div>
+				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_2" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Dangerous Merge:</b> <i> If you go head-on with a foe while trailing a pursuer, </i> <u> roll +Daring. </u> <input type="hidden" class="sheet-radio-roll-state" name="attr_rollstate" value="flat" /> <button type='action' name='act_advdangerousmerge' class="sheet-rollbuttond10 daring advantage" ></button>
+				<button type="roll" name="roll_dangerousmerge" value='&{template:com} {{char=@{character_name}}} {{move=Dangerous Merge}} {{statused=Daring}} {{showroll=[[1]]}} {{check=[[2d10 + @{daring} + @{roll_mod} - @{injury}}]]}} {{success=@{dangerousmergesuccess}}} {{partial=@{dangerousmergepartial}}} {{miss=@{genericmiss}}}' class="sheet-rollbuttond10 daring flat" > </button>
+				<button type='action' name='act_disdangerousmerge' class="sheet-rollbuttond10 daring disadvantage" ></button> </label> </div>
 				
 				<div class="slipstreamunchecked"><input name="attr_slipstreammastery_3" class="sheet-used-boxes" type="checkbox"/> <label class="sheet-left-label-small"><b>Headache Spin:</b> <i> When you deliberately induce a spin while being chased, </i> roll to Recover as usual. Your enemy will believe you have been shot down, and you will take Advantage forward against them.</label> </div>
 				
@@ -1347,6 +1349,24 @@
 	
 	
 	
+	<!-- Mastery Move outcomes -->
+	
+	<!-- Slipstream Mastery - Dangeroud Merge -->
+	<div class="hidden">
+		<div class="sheet-action">
+			<span class="sheet-action">Result 16+ : </span>
+			<textarea name="attr_dangerousmergesuccess" class="sheet-actiondesc" placeholder="Great Success" title="Great Success">On a 16+, your foes collide.
+			</textarea>
+		</div>
+		<div class="sheet-action">
+			<span class="sheet-action">Result 11-15 : </span>
+			<textarea name="attr_dangerousmergepartial" class="sheet-actiondesc" placeholder="Mild Success" title="Mild Success">On an 11-15, they are both made vulnerable while recovering, as per Tables Have Turned.
+			</textarea>
+		</div>
+	</div>
+	
+	
+	
 	
 </div>
 
@@ -1879,17 +1899,19 @@ const rollContent = {
 	advgetreal:'{{rollmod=[[@{calm} + @{roll_mod} - @{injury}]]}} {{move=Get Real}} {{statused=Calm}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}',
 	disgetreal:'{{rollmod=[[@{calm} + @{roll_mod} - @{injury}]]}} {{move=Get Real}} {{statused=Calm}} {{success=@{getrealsuccess}}} {{partial=@{getrealpartial}}} {{miss=@{getrealmiss}}} {{infodesc=?{When you speak the truth from your heart and they are willing to listen choose a goal from below and take 1 Stress.|Take them as a Confidant repair a relationship.|Begin a Move Exchange.|Remove 3 Stress between the two of you however you choose.|Offer them a chance to Rethink their Life (p.123). You choose the stats that change and if they accept they don’t spend any XP.}}}',
 	advbrawl:'{{rollmod=[[@{hard} + @{roll_mod} - @{injury}]]}} {{move=Brawl}} {{statused=Hard}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}',
-	disbrawl:'{{rollmod=[[@{hard} + @{roll_mod} - @{injury}]]}} {{move=Brawl}} {{statused=Hard}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}'
+	disbrawl:'{{rollmod=[[@{hard} + @{roll_mod} - @{injury}]]}} {{move=Brawl}} {{statused=Hard}} {{success=@{brawlsuccess}}} {{partial=@{brawlpartial}}} {{miss=@{brawlmiss}}}',
+	advdangerousmerge:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Dangerous Merge}} {{statused=Daring}} {{success=@{dangerousmergesuccess}}} {{partial=@{dangerousmergepartial}}} {{miss=@{genericmiss}}}',
+	disdangerousmerge:'{{rollmod=[[@{daring} + @{roll_mod} - @{injury}]]}} {{move=Dangerous Merge}} {{statused=Daring}} {{success=@{dangerousmergesuccess}}} {{partial=@{dangerousmergepartial}}} {{miss=@{genericmiss}}}'
 };
 
 
 
-const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears","advindulgeinviceunfamiliar","advpresstheissue","advturnonthecharm","advgetreal","advbrawl"];
+const rollButtonsAdv = ["advexplorethewild","advconfrontyourfears","advindulgeinviceunfamiliar","advpresstheissue","advturnonthecharm","advgetreal","advbrawl","advdangerousmerge"];
 rollButtonsAdv.forEach((button)=>{
     on(`clicked:${button}`,initiateRollAdv);
 });
 
-const rollButtonsDis = ["disexplorethewild","disconfrontyourfears","disindulgeinviceunfamiliar","dispresstheissue","disturnonthecharm","disgetreal","disbrawl"];
+const rollButtonsDis = ["disexplorethewild","disconfrontyourfears","disindulgeinviceunfamiliar","dispresstheissue","disturnonthecharm","disgetreal","disbrawl","disdangerousmerge"];
 rollButtonsDis.forEach((button)=>{
     on(`clicked:${button}`,initiateRollDis);
 });
