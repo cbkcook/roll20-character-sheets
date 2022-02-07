@@ -326,6 +326,12 @@ button.sheet-tabbutton {
 	
 }
 
+.lang-es .sheet-moves button[type=roll].sheet-rollbutton {
+	
+	width: 220px;
+	
+}
+
 .sheet-moves button[type=roll].sheet-rollbuttonlong {
 	
 	font-family: 'Limelight', cursive;
